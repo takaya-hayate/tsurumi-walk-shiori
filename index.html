@@ -22,6 +22,18 @@
     --warn-ink: #6a4a00;
     --now-bg: #fff1c9;
     --done: #a59a8c;
+    --il-bg: #fbf4e4;
+    --il-ink: #3a2f27;
+    --il-sky: #dcebea;
+    --il-sea: #8fc1cc;
+    --il-sun: #e9b44c;
+    --il-wood: #c79a5b;
+    --il-green: #8fae6b;
+    --il-gray: #b9ad9c;
+    --il-dark: #4a3f37;
+    --il-pink: #e9a79a;
+    --il-beer: #e6a532;
+    --il-teal: #5d9d97;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
@@ -39,6 +51,18 @@
       --warn-ink: #f5dc9a;
       --now-bg: #3d3319;
       --done: #7b6f63;
+      --il-bg: #231e19;
+      --il-ink: #e9dcc8;
+      --il-sky: #2c3d40;
+      --il-sea: #3d6f7c;
+      --il-sun: #e2b25a;
+      --il-wood: #9a7647;
+      --il-green: #6f8a55;
+      --il-gray: #6d6258;
+      --il-dark: #15110e;
+      --il-pink: #c9867a;
+      --il-beer: #d39a34;
+      --il-teal: #3f7a75;
     }
   }
   :root[data-theme="dark"] {
@@ -56,6 +80,18 @@
     --warn-ink: #f5dc9a;
     --now-bg: #3d3319;
     --done: #7b6f63;
+    --il-bg: #231e19;
+    --il-ink: #e9dcc8;
+    --il-sky: #2c3d40;
+    --il-sea: #3d6f7c;
+    --il-sun: #e2b25a;
+    --il-wood: #9a7647;
+    --il-green: #6f8a55;
+    --il-gray: #6d6258;
+    --il-dark: #15110e;
+    --il-pink: #c9867a;
+    --il-beer: #d39a34;
+    --il-teal: #3f7a75;
   }
 
   * { box-sizing: border-box; }
@@ -72,6 +108,37 @@
     max-width: 560px;
     margin: 0 auto;
     padding: 24px 16px calc(48px + env(safe-area-inset-bottom));
+  }
+
+  /* イラストの部品 */
+  .defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+  .k { stroke: var(--il-ink); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+  .thin { stroke-width: 1.5; }
+  .f-paper { fill: var(--card); }
+  .f-acc { fill: var(--accent); }
+  .f-teal { fill: var(--il-teal); }
+  .f-sky { fill: var(--il-sky); }
+  .f-sea { fill: var(--il-sea); }
+  .f-sun { fill: var(--il-sun); }
+  .f-wood { fill: var(--il-wood); }
+  .f-green { fill: var(--il-green); }
+  .f-gray { fill: var(--il-gray); }
+  .f-dark { fill: var(--il-dark); }
+  .f-pink { fill: var(--il-pink); }
+  .f-beer { fill: var(--il-beer); }
+  .s-foam { stroke: var(--card); }
+  .s-sun { stroke: var(--il-sun); stroke-width: 4; fill: none; }
+  .il-text { fill: var(--il-ink); font-family: "Hiragino Sans", sans-serif; font-weight: 700; font-size: 11px; }
+
+  .illust {
+    display: block;
+    width: min(100%, 300px);
+    height: auto;
+    aspect-ratio: 2 / 1;
+    margin: 0 auto 14px;
+    background: var(--il-bg);
+    border: 1px solid var(--line);
+    border-radius: 14px;
   }
 
   header { text-align: center; padding: 12px 0 20px; border-bottom: 3px double var(--line); }
@@ -103,24 +170,54 @@
     border-radius: 12px;
   }
 
-  nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    padding: 14px 0 4px;
+  .route-title {
+    margin: 20px 0 8px;
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: 15px;
+    color: var(--ink-soft);
+    text-align: center;
   }
-  nav a {
-    flex: none;
-    font-size: 13px;
-    color: var(--ink);
+  .route {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .route a {
+    display: block;
+    text-align: center;
     text-decoration: none;
+    color: var(--ink);
     background: var(--card);
     border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 6px 4px 8px;
+  }
+  .route svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 2 / 1;
+    border-radius: 6px;
+    background: var(--il-bg);
+  }
+  .route b { display: block; font-size: 12px; line-height: 1.3; margin-top: 5px; }
+  .route span { display: block; font-size: 11px; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+
+  .modebtn {
+    display: block;
+    margin: 18px auto 0;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--card);
+    background: var(--accent);
+    border: 0;
     border-radius: 999px;
-    padding: 6px 12px;
+    padding: 10px 22px;
+    min-height: 44px;
   }
 
-  section { margin-top: 28px; scroll-margin-top: 12px; }
+  section.page { margin-top: 32px; scroll-margin-top: 12px; }
   .sec-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px; }
   .num {
     flex: none;
@@ -137,7 +234,6 @@
     line-height: 1.4;
     margin: 0;
   }
-  .sec-time { font-size: 13px; color: var(--ink-soft); margin: -4px 0 10px; }
 
   .warn {
     background: var(--warn-bg);
@@ -190,7 +286,7 @@
   .walk .tag { color: var(--walk); }
   .spot .tag { color: var(--spot); }
   .spot .ttl { font-size: 17px; }
-  .desc { font-size: 14px; color: var(--ink-soft); margin-top: 2px; }
+  .desc { display: block; font-size: 14px; color: var(--ink-soft); margin-top: 2px; }
   .links { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 8px; }
   .links a {
     font-size: 13px;
@@ -229,7 +325,7 @@
   }
   .fallback b { display: block; margin-bottom: 4px; }
 
-  footer {
+  .page.end {
     margin-top: 36px;
     padding-top: 16px;
     border-top: 3px double var(--line);
@@ -237,6 +333,7 @@
     font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
     color: var(--ink-soft);
   }
+  .page.end p { font-size: 20px; margin: 8px 0; color: var(--ink); }
   button.reset {
     margin-top: 12px;
     font: inherit;
@@ -246,31 +343,243 @@
     border: 1px solid var(--line);
     border-radius: 999px;
     padding: 6px 14px;
+    min-height: 40px;
+  }
+
+  /* ページ式表示 */
+  .bar { display: none; }
+  body.paged { overflow: hidden; }
+  body.paged .wrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: calc(61px + env(safe-area-inset-bottom));
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 0;
+    overflow: hidden;
+    -webkit-perspective: 1600px;
+    perspective: 1600px;
+  }
+  body.paged .page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: calc(20px + env(safe-area-inset-top)) 16px 28px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    background: var(--paper);
+    border: 0;
+    box-shadow: inset 10px 0 14px -10px rgba(0, 0, 0, 0.28);
+    visibility: hidden;
+    -webkit-transform-origin: left center;
+    transform-origin: left center;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  body.paged .page.is-current { visibility: visible; z-index: 1; }
+  body.paged .page.is-under { visibility: visible; z-index: 1; animation: reveal 0.6s ease-out both; }
+  body.paged .page.flip-out { visibility: visible; z-index: 2; animation: flipOut 0.6s cubic-bezier(0.45, 0.05, 0.55, 0.95) both; }
+  body.paged .page.flip-in { visibility: visible; z-index: 2; animation: flipIn 0.6s cubic-bezier(0.45, 0.05, 0.55, 0.95) both; }
+  @keyframes flipOut {
+    from { transform: rotateY(0deg); filter: brightness(1); }
+    to { transform: rotateY(-105deg); filter: brightness(0.7); }
+  }
+  @keyframes flipIn {
+    from { transform: rotateY(-105deg); filter: brightness(0.7); }
+    to { transform: rotateY(0deg); filter: brightness(1); }
+  }
+  @keyframes reveal {
+    from { filter: brightness(0.82); }
+    to { filter: brightness(1); }
+  }
+  body.paged .bar {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto;
+    gap: 8px;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    padding: 8px 12px calc(8px + env(safe-area-inset-bottom));
+    background: var(--card);
+    border-top: 1px solid var(--line);
+  }
+  .bar button {
+    font: inherit;
+    font-size: 15px;
+    color: var(--ink);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    min-height: 44px;
+    padding: 0 10px;
+  }
+  .bar button:disabled { opacity: 0.35; }
+  .bar .pos { font-size: 14px; color: var(--ink-soft); font-variant-numeric: tabular-nums; padding: 0 6px; white-space: nowrap; }
+  body.paged .page.end { display: flex; flex-direction: column; justify-content: center; align-items: center; }
+
+  @media (prefers-reduced-motion: reduce) {
+    body.paged .page { animation: none !important; }
+  }
+  @media print {
+    body.paged { overflow: visible; }
+    body.paged .wrap { position: static; overflow: visible; }
+    body.paged .page { position: static; height: auto; visibility: visible; overflow: visible; box-shadow: none; }
+    .bar, .modebtn, button.reset { display: none !important; }
   }
 </style>
 </head>
 <body>
-<div class="wrap">
 
-<header>
-  <span class="kicker">土曜ダイヤ</span>
-  <h1>昭和レトロ＆デカ盛り満喫の<br>お散歩しおり</h1>
-  <p class="date">2026年11月21日（土）　08:49 出発 → 14:30 喫茶店</p>
-</header>
+<svg class="defs" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="il-train" viewBox="0 0 240 120">
+      <circle class="f-sun" cx="204" cy="24" r="12"/>
+      <path class="k f-paper" d="M28 34a8 8 0 0 1 4-15a11 11 0 0 1 21 2a7 7 0 0 1 1 13z"/>
+      <path class="k" d="M104 38l16-16l16 16M110 22h20"/>
+      <rect class="k f-teal" x="36" y="38" width="168" height="54" rx="12"/>
+      <rect class="f-acc" x="37" y="70" width="166" height="6"/>
+      <rect class="k f-paper" x="48" y="47" width="30" height="18" rx="3"/>
+      <rect class="k f-paper" x="84" y="47" width="30" height="18" rx="3"/>
+      <rect class="k f-paper" x="122" y="46" width="24" height="40" rx="3"/>
+      <path class="k thin" d="M134 46v40"/>
+      <rect class="k f-paper" x="154" y="47" width="38" height="18" rx="3"/>
+      <circle class="f-sun" cx="195" cy="83" r="3"/>
+      <circle class="k f-dark" cx="72" cy="96" r="8"/>
+      <circle class="k f-dark" cx="168" cy="96" r="8"/>
+      <path class="k" d="M12 106h216M30 106v6M60 106v6M90 106v6M120 106v6M150 106v6M180 106v6M210 106v6"/>
+    </symbol>
 
-<p class="notice">お出かけ当日は、乗換案内アプリ等で21日（土）の最新ダイヤを念のためご確認ください。</p>
+    <symbol id="il-fish" viewBox="0 0 240 120">
+      <rect class="f-paper" x="20" y="8" width="200" height="18"/>
+      <rect class="f-acc" x="20" y="8" width="20" height="18"/>
+      <rect class="f-acc" x="60" y="8" width="20" height="18"/>
+      <rect class="f-acc" x="100" y="8" width="20" height="18"/>
+      <rect class="f-acc" x="140" y="8" width="20" height="18"/>
+      <rect class="f-acc" x="180" y="8" width="20" height="18"/>
+      <rect class="k" x="20" y="8" width="200" height="18"/>
+      <path class="k f-paper" d="M20 26q10 12 20 0q10 12 20 0q10 12 20 0q10 12 20 0q10 12 20 0q10 12 20 0q10 12 20 0q10 12 20 0q10 12 20 0q10 12 20 0"/>
+      <path class="k f-sea" d="M158 66l34-20l-8 20l8 20z"/>
+      <path class="k f-sea" d="M96 46q14-16 34-4l-4 6z"/>
+      <ellipse class="k f-sea" cx="108" cy="66" rx="56" ry="22"/>
+      <path class="k" d="M80 50q10 16 0 32"/>
+      <path class="k thin" d="M102 60q6 6 0 12M120 58q6 8 0 16M138 60q5 6 0 12"/>
+      <circle class="k f-paper" cx="66" cy="62" r="5"/>
+      <circle class="f-dark" cx="66" cy="62" r="2"/>
+      <rect class="k f-wood" x="34" y="94" width="172" height="16" rx="3"/>
+      <path class="k thin" d="M76 94v16M120 94v16M164 94v16"/>
+    </symbol>
 
-<nav aria-label="目次">
-  <a href="#s1">01 出発</a>
-  <a href="#s2">02 魚河岸通り</a>
-  <a href="#s3">03 国道駅</a>
-  <a href="#s4">04 ばーく</a>
-  <a href="#s5">05 海芝浦</a>
-  <a href="#s6">06 キリン</a>
-  <a href="#s7">07 喫茶ミネ</a>
-</nav>
+    <symbol id="il-arch" viewBox="0 0 240 120">
+      <rect class="k f-teal" x="62" y="8" width="96" height="18" rx="5"/>
+      <path class="k thin" d="M74 17h10M94 17h10M114 17h10M134 17h10"/>
+      <rect class="k f-gray" x="14" y="26" width="212" height="84"/>
+      <path class="k f-dark" d="M28 110V76a22 22 0 0 1 44 0v34z"/>
+      <path class="k f-sun" d="M88 110V68a32 32 0 0 1 64 0v42z"/>
+      <path class="k f-dark" d="M168 110V76a22 22 0 0 1 44 0v34z"/>
+      <path class="k" d="M120 36v12"/>
+      <circle class="k f-paper" cx="120" cy="54" r="6"/>
+      <circle class="f-dark" cx="120" cy="84" r="5"/>
+      <path class="f-dark" d="M112 110V98a8 8 0 0 1 16 0v12z"/>
+      <path class="k" d="M6 110h228"/>
+    </symbol>
 
-<section id="s1">
+    <symbol id="il-cutlet" viewBox="0 0 240 120">
+      <path class="k" d="M130 30q-6-8 0-14M150 30q-6-8 0-14M170 30q-6-8 0-14"/>
+      <ellipse class="k f-paper" cx="120" cy="86" rx="88" ry="24"/>
+      <ellipse class="k thin" cx="120" cy="86" rx="68" ry="16"/>
+      <path class="k f-green" d="M52 82a14 14 0 0 1 10-22a14 14 0 0 1 26-2a13 13 0 0 1 10 24z"/>
+      <path class="k thin" d="M64 72q6-6 12 0M76 78q6-6 12 0"/>
+      <rect class="k f-wood" x="110" y="40" width="82" height="30" rx="8"/>
+      <rect class="k f-wood" x="98" y="54" width="92" height="36" rx="8"/>
+      <rect class="k f-pink" x="106" y="63" width="76" height="18" rx="4"/>
+      <path class="k" d="M8 44v18a6 6 0 0 0 12 0V44M14 44v62"/>
+      <path class="k" d="M230 44v62M230 44q-10 16 0 34"/>
+    </symbol>
+
+    <symbol id="il-sea" viewBox="0 0 240 120">
+      <rect class="f-sky" x="0" y="0" width="240" height="72"/>
+      <circle class="f-sun" cx="108" cy="22" r="12"/>
+      <path class="k thin" d="M150 24l-34 30M150 24l-17 30M150 24l17 30M150 24l34 30M206 24l-34 30M206 24l-17 30M206 24l17 30M206 24l34 30"/>
+      <path class="k" d="M150 72V20M206 72V20M100 54h140"/>
+      <rect class="f-sea" x="0" y="70" width="240" height="50"/>
+      <path class="k thin s-foam" d="M124 84q8-6 16 0t16 0M176 98q8-6 16 0t16 0M132 110q8-6 16 0t16 0"/>
+      <path class="k f-gray" d="M0 82h104l14 38H0z"/>
+      <path class="s-sun" d="M0 93h106"/>
+      <path class="k" d="M10 82V66M40 82V66M70 82V66M100 82V66M4 68h98"/>
+      <rect class="k f-paper" x="18" y="36" width="60" height="20" rx="2"/>
+      <path class="k" d="M30 56v10M66 56v10"/>
+      <text class="il-text" x="48" y="50" text-anchor="middle">海芝浦</text>
+    </symbol>
+
+    <symbol id="il-beer" viewBox="0 0 240 120">
+      <path class="k" d="M37 44V32h34v24"/>
+      <rect class="k f-gray" x="22" y="44" width="30" height="62" rx="6"/>
+      <rect class="k f-gray" x="58" y="56" width="26" height="50" rx="6"/>
+      <path class="k thin" d="M22 64h30M22 86h30M58 74h26M58 92h26"/>
+      <path class="k" d="M170 56h10a10 10 0 0 1 10 10v16a10 10 0 0 1-10 10h-10"/>
+      <rect class="k f-beer" x="112" y="42" width="58" height="64" rx="6"/>
+      <circle class="k thin" cx="128" cy="84" r="3"/>
+      <circle class="k thin" cx="146" cy="72" r="2.5"/>
+      <circle class="k thin" cx="152" cy="92" r="3"/>
+      <path class="k f-paper" d="M108 46a10 10 0 0 1 6-16a12 12 0 0 1 22-4a12 12 0 0 1 22 2a10 10 0 0 1 14 14a8 8 0 0 1-6 10h-52a8 8 0 0 1-6-6z"/>
+      <path class="k f-paper" d="M124 52v10a4 4 0 0 0 8 0V52"/>
+      <path class="k" d="M214 106V54"/>
+      <path class="k f-sun" d="M214 40q-8 7 0 16q8-9 0-16zM214 60q-11 3-8 14q11-3 8-14zM214 60q11 3 8 14q-11-3-8-14zM214 78q-11 3-8 14q11-3 8-14zM214 78q11 3 8 14q-11-3-8-14z"/>
+      <path class="k" d="M10 106h220"/>
+    </symbol>
+
+    <symbol id="il-coffee" viewBox="0 0 240 120">
+      <path class="k" d="M50 48q-6-8 0-16q6-8 0-16M72 48q-6-8 0-16q6-8 0-16"/>
+      <ellipse class="k f-paper" cx="62" cy="100" rx="40" ry="7"/>
+      <path class="k" d="M88 68h6a8 8 0 0 1 0 16h-7"/>
+      <path class="k f-paper" d="M36 62h52v18a16 16 0 0 1-16 16H52a16 16 0 0 1-16-16z"/>
+      <ellipse class="k f-wood" cx="62" cy="62" rx="26" ry="5"/>
+      <path class="k" d="M136 88v18M212 88v18M128 106h16M204 106h16"/>
+      <rect class="k f-wood" x="124" y="48" width="100" height="40" rx="5"/>
+      <rect class="k f-dark" x="134" y="55" width="62" height="26" rx="2"/>
+      <path class="f-sun" d="M142 60h6v4h-6zM154 60h6v4h-6zM166 60h6v4h-6zM178 60h6v4h-6zM148 67h6v4h-6zM160 67h6v4h-6zM172 67h6v4h-6z"/>
+      <rect class="f-paper" x="158" y="75" width="14" height="3"/>
+      <circle class="k f-acc" cx="210" cy="61" r="4"/>
+      <circle class="k f-acc" cx="210" cy="76" r="4"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="wrap" id="book">
+
+<div class="page cover" id="s0">
+  <header>
+    <span class="kicker">土曜ダイヤ</span>
+    <h1>昭和レトロ＆デカ盛り満喫の<br>お散歩しおり</h1>
+    <p class="date">2026年11月21日（土）　08:49 出発 → 14:30 喫茶店</p>
+  </header>
+
+  <p class="notice">お出かけ当日は、乗換案内アプリ等で21日（土）の最新ダイヤを念のためご確認ください。</p>
+
+  <p class="route-title">今日のルート</p>
+  <nav class="route" aria-label="今日のルート">
+    <a href="#s1" data-go="1"><svg viewBox="0 0 240 120" aria-hidden="true"><use href="#il-train"/></svg><b>出発</b><span>08:49</span></a>
+    <a href="#s2" data-go="2"><svg viewBox="0 0 240 120" aria-hidden="true"><use href="#il-fish"/></svg><b>魚河岸通り</b><span>09:50</span></a>
+    <a href="#s3" data-go="3"><svg viewBox="0 0 240 120" aria-hidden="true"><use href="#il-arch"/></svg><b>国道駅</b><span>10:15</span></a>
+    <a href="#s4" data-go="4"><svg viewBox="0 0 240 120" aria-hidden="true"><use href="#il-cutlet"/></svg><b>ばーく</b><span>11:00</span></a>
+    <a href="#s5" data-go="5"><svg viewBox="0 0 240 120" aria-hidden="true"><use href="#il-sea"/></svg><b>海芝浦</b><span>12:21</span></a>
+    <a href="#s6" data-go="6"><svg viewBox="0 0 240 120" aria-hidden="true"><use href="#il-beer"/></svg><b>キリン工場</b><span>13:20</span></a>
+    <a href="#s7" data-go="7"><svg viewBox="0 0 240 120" aria-hidden="true"><use href="#il-coffee"/></svg><b>喫茶ミネ</b><span>14:30</span></a>
+  </nav>
+
+  <button class="modebtn js-mode" type="button">📖 ページ式で見る</button>
+</div>
+
+<section class="page" id="s1">
+  <svg class="illust" viewBox="0 0 240 120" role="img" aria-label="電車のイラスト"><use href="#il-train"/></svg>
   <div class="sec-head"><span class="num">01</span><h2>出発〜生麦へ</h2></div>
   <ul class="tl">
     <li class="train" data-at="08:49"><label>
@@ -311,7 +620,8 @@
   </ul>
 </section>
 
-<section id="s2">
+<section class="page" id="s2">
+  <svg class="illust" viewBox="0 0 240 120" role="img" aria-label="魚屋の軒先と魚のイラスト"><use href="#il-fish"/></svg>
   <div class="sec-head"><span class="num">02</span><h2>午前前半：魚河岸通りを歩き抜ける</h2></div>
   <ul class="tl">
     <li class="spot" data-at="09:50"><label>
@@ -326,7 +636,8 @@
   </ul>
 </section>
 
-<section id="s3">
+<section class="page" id="s3">
+  <svg class="illust" viewBox="0 0 240 120" role="img" aria-label="高架下のアーチのイラスト"><use href="#il-arch"/></svg>
   <div class="sec-head"><span class="num">03</span><h2>午前後半：昭和の時が止まる「国道駅」を探索</h2></div>
   <ul class="tl">
     <li class="spot" data-at="10:15"><label>
@@ -340,7 +651,8 @@
   </ul>
 </section>
 
-<section id="s4">
+<section class="page" id="s4">
+  <svg class="illust" viewBox="0 0 240 120" role="img" aria-label="分厚いハムカツのイラスト"><use href="#il-cutlet"/></svg>
   <div class="sec-head"><span class="num">04</span><h2>ランチ：オープンと同時に「レストラン ばーく」へ</h2></div>
   <div class="warn">⚠️ 10:35に国道駅を出発</div>
   <ul class="tl">
@@ -362,7 +674,8 @@
   </ul>
 </section>
 
-<section id="s5">
+<section class="page" id="s5">
+  <svg class="illust" viewBox="0 0 240 120" role="img" aria-label="海に面したホームと橋のイラスト"><use href="#il-sea"/></svg>
   <div class="sec-head"><span class="num">05</span><h2>12時台のハイライト：海を望む終着駅「海芝浦駅」へ</h2></div>
   <div class="warn">⚠️ 11:55にはお店を出発（時間厳守）</div>
   <ul class="tl">
@@ -402,7 +715,8 @@
   </div>
 </section>
 
-<section id="s6">
+<section class="page" id="s6">
+  <svg class="illust" viewBox="0 0 240 120" role="img" aria-label="ビールジョッキと工場のタンクのイラスト"><use href="#il-beer"/></svg>
   <div class="sec-head"><span class="num">06</span><h2>午後前半：キリンビール横浜工場に立ち寄り</h2></div>
   <ul class="tl">
     <li class="walk" data-at="12:47"><label>
@@ -444,7 +758,8 @@
   </ul>
 </section>
 
-<section id="s7">
+<section class="page" id="s7">
+  <svg class="illust" viewBox="0 0 240 120" role="img" aria-label="コーヒーとテーブルゲーム台のイラスト"><use href="#il-coffee"/></svg>
   <div class="sec-head"><span class="num">07</span><h2>午後後半：レトロな喫茶店「喫茶ミネ」で一息</h2></div>
   <ul class="tl">
     <li class="train" data-at="14:23"><label>
@@ -473,24 +788,35 @@
   </ul>
 </section>
 
-<footer>
-  お疲れ様でした！
+<div class="page end" id="s8">
+  <svg class="illust" viewBox="0 0 240 120" role="img" aria-label="コーヒーのイラスト"><use href="#il-coffee"/></svg>
+  <p>お疲れ様でした！</p>
   <div><button class="reset" type="button" id="reset">チェックをすべて外す</button></div>
-</footer>
+</div>
 
 </div>
+
+<div class="bar" id="bar">
+  <button type="button" id="prev" aria-label="前のページ">‹ 前へ</button>
+  <span class="pos" id="pos" aria-live="polite">1 / 9</span>
+  <button type="button" id="next" aria-label="次のページ">次へ ›</button>
+  <button type="button" class="js-mode" aria-label="スクロール表示に切り替える">一覧</button>
+</div>
+
 <script>
 (function () {
   var KEY = "shiori-2026-11-21";
-  var boxes = Array.prototype.slice.call(document.querySelectorAll('ul.tl input[type="checkbox"]'));
+  var MODE_KEY = "shiori-mode";
+  var slice = Array.prototype.slice;
+  var boxes = slice.call(document.querySelectorAll('ul.tl input[type="checkbox"]'));
 
+  /* チェック欄の保存 */
   function load() {
     try { return JSON.parse(localStorage.getItem(KEY) || "[]"); } catch (e) { return []; }
   }
   function save() {
     try { localStorage.setItem(KEY, JSON.stringify(boxes.map(function (b) { return b.checked; }))); } catch (e) { /* 保存できない環境ではチェックは画面を閉じるまで有効 */ }
   }
-
   var saved = load();
   boxes.forEach(function (b, i) {
     b.checked = saved[i] === true;
@@ -501,21 +827,151 @@
     save();
   });
 
+  /* いまここ表示 */
+  var rows = slice.call(document.querySelectorAll("li[data-at]"));
   function markNow() {
     var d = new Date();
-    var rows = Array.prototype.slice.call(document.querySelectorAll("li[data-at]"));
     rows.forEach(function (r) { r.classList.remove("now"); });
-    if (d.getFullYear() !== 2026 || d.getMonth() !== 10 || d.getDate() !== 21) return;
+    if (d.getFullYear() !== 2026 || d.getMonth() !== 10 || d.getDate() !== 21) return null;
     var mins = d.getHours() * 60 + d.getMinutes();
     var current = null;
     rows.forEach(function (r) {
       var p = r.getAttribute("data-at").split(":");
       if (Number(p[0]) * 60 + Number(p[1]) <= mins) current = r;
     });
-    if (current && mins < 17 * 60) current.classList.add("now");
+    if (current && mins < 17 * 60) { current.classList.add("now"); return current; }
+    return null;
   }
-  markNow();
+  var nowRow = markNow();
   setInterval(markNow, 30000);
+
+  /* ページ式表示 */
+  var body = document.body;
+  var book = document.getElementById("book");
+  var pages = slice.call(document.querySelectorAll(".page"));
+  var pos = document.getElementById("pos");
+  var prev = document.getElementById("prev");
+  var next = document.getElementById("next");
+  var coverBtn = document.querySelector(".cover .js-mode");
+  var idx = 0;
+  var busy = false;
+  var paged = false;
+  var reduce = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+
+  function refreshBar() {
+    pos.textContent = (idx + 1) + " / " + pages.length;
+    prev.disabled = idx === 0;
+    next.disabled = idx === pages.length - 1;
+  }
+  function settle(i) {
+    pages.forEach(function (p, n) {
+      p.classList.remove("flip-out", "flip-in", "is-under");
+      p.classList.toggle("is-current", n === i);
+    });
+    idx = i;
+    busy = false;
+    refreshBar();
+  }
+  function go(i) {
+    if (!paged || busy) return;
+    i = Math.max(0, Math.min(pages.length - 1, i));
+    if (i === idx) return;
+    var from = pages[idx];
+    var to = pages[i];
+    var forward = i > idx;
+    to.scrollTop = 0;
+    if (reduce) { settle(i); return; }
+    busy = true;
+    var mover = forward ? from : to;
+    var done = false;
+    function finish(e) {
+      if (done) return;
+      if (e && e.target !== mover) return;
+      done = true;
+      mover.removeEventListener("animationend", finish);
+      settle(i);
+    }
+    mover.addEventListener("animationend", finish);
+    setTimeout(function () { finish(null); }, 900);
+    if (forward) {
+      to.classList.add("is-under");
+      from.classList.add("flip-out");
+    } else {
+      to.classList.add("flip-in");
+    }
+  }
+  function pageInView() {
+    if (paged) return idx;
+    var best = 0;
+    pages.forEach(function (p, n) {
+      if (p.getBoundingClientRect().top <= 120) best = n;
+    });
+    return best;
+  }
+  function setMode(toPaged, startAt) {
+    var anchor = typeof startAt === "number" ? startAt : pageInView();
+    paged = toPaged;
+    body.classList.toggle("paged", paged);
+    if (coverBtn) coverBtn.textContent = paged ? "一覧（スクロール）で見る" : "📖 ページ式で見る";
+    if (paged) {
+      window.scrollTo(0, 0);
+      pages[anchor].scrollTop = 0;
+      settle(anchor);
+    } else {
+      pages.forEach(function (p) { p.classList.remove("is-current", "is-under", "flip-in", "flip-out"); });
+      busy = false;
+      if (anchor > 0) { pages[anchor].scrollIntoView(); } else { window.scrollTo(0, 0); }
+    }
+    try { localStorage.setItem(MODE_KEY, paged ? "page" : "scroll"); } catch (e) { /* 保存できなくても表示は切り替わる */ }
+  }
+
+  slice.call(document.querySelectorAll(".js-mode")).forEach(function (b) {
+    b.addEventListener("click", function () { setMode(!paged); });
+  });
+  prev.addEventListener("click", function () { go(idx - 1); });
+  next.addEventListener("click", function () { go(idx + 1); });
+  slice.call(document.querySelectorAll("[data-go]")).forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      if (!paged) return;
+      e.preventDefault();
+      go(Number(a.getAttribute("data-go")));
+    });
+  });
+  document.addEventListener("keydown", function (e) {
+    if (!paged) return;
+    if (e.key === "ArrowRight" || e.key === "PageDown") { go(idx + 1); }
+    if (e.key === "ArrowLeft" || e.key === "PageUp") { go(idx - 1); }
+  });
+
+  /* スワイプでめくる */
+  var sx = 0;
+  var sy = 0;
+  var tracking = false;
+  book.addEventListener("touchstart", function (e) {
+    if (!paged || e.touches.length !== 1) { tracking = false; return; }
+    tracking = true;
+    sx = e.touches[0].clientX;
+    sy = e.touches[0].clientY;
+  }, { passive: true });
+  book.addEventListener("touchend", function (e) {
+    if (!paged || !tracking) return;
+    tracking = false;
+    var t = e.changedTouches[0];
+    var dx = t.clientX - sx;
+    var dy = t.clientY - sy;
+    if (Math.abs(dx) > 56 && Math.abs(dx) > Math.abs(dy) * 1.5) { go(idx + (dx < 0 ? 1 : -1)); }
+  }, { passive: true });
+
+  /* 前回の表示方法を復元。当日は「いまここ」のページから開く */
+  var savedMode = "scroll";
+  try { savedMode = localStorage.getItem(MODE_KEY) || "scroll"; } catch (e) { savedMode = "scroll"; }
+  if (savedMode === "page") {
+    var start = 0;
+    if (nowRow) {
+      pages.forEach(function (p, n) { if (p.contains(nowRow)) start = n; });
+    }
+    setMode(true, start);
+  }
 })();
 </script>
 </body>
