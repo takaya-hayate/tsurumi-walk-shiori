@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="format-detection" content="telephone=no">
+<meta name="robots" content="noindex, nofollow">
+<title>鶴見・生麦 お散歩しおり</title>
+<style>
+  :root {
+    --paper: #f6efe0;
+    --card: #fffaf0;
+    --ink: #2f2620;
+    --ink-soft: #6b5d51;
+    --line: #d9cbb2;
+    --accent: #b8402a;
+    --accent-soft: #f3d9cc;
+    --train: #2f6f6a;
+    --walk: #8a6a1f;
+    --spot: #b8402a;
+    --warn-bg: #fbe6b8;
+    --warn-ink: #6a4a00;
+    --now-bg: #fff1c9;
+    --done: #a59a8c;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #1d1916;
+      --card: #28221d;
+      --ink: #f0e6d6;
+      --ink-soft: #b5a796;
+      --line: #463c33;
+      --accent: #e8866c;
+      --accent-soft: #4a2a21;
+      --train: #7cc4bd;
+      --walk: #dcb866;
+      --spot: #e8866c;
+      --warn-bg: #4a3a12;
+      --warn-ink: #f5dc9a;
+      --now-bg: #3d3319;
+      --done: #7b6f63;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #1d1916;
+    --card: #28221d;
+    --ink: #f0e6d6;
+    --ink-soft: #b5a796;
+    --line: #463c33;
+    --accent: #e8866c;
+    --accent-soft: #4a2a21;
+    --train: #7cc4bd;
+    --walk: #dcb866;
+    --spot: #e8866c;
+    --warn-bg: #4a3a12;
+    --warn-ink: #f5dc9a;
+    --now-bg: #3d3319;
+    --done: #7b6f63;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+  }
+  .wrap {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 24px 16px calc(48px + env(safe-area-inset-bottom));
+  }
+
+  header { text-align: center; padding: 12px 0 20px; border-bottom: 3px double var(--line); }
+  .kicker {
+    display: inline-block;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+    padding: 2px 12px;
+  }
+  h1 {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    font-size: 26px;
+    line-height: 1.35;
+    margin: 12px 0 6px;
+    text-wrap: balance;
+  }
+  .date { color: var(--ink-soft); font-size: 14px; margin: 0; }
+
+  .notice {
+    margin: 16px 0 0;
+    padding: 10px 12px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 14px 0 4px;
+  }
+  nav a {
+    flex: none;
+    font-size: 13px;
+    color: var(--ink);
+    text-decoration: none;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 6px 12px;
+  }
+
+  section { margin-top: 28px; scroll-margin-top: 12px; }
+  .sec-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px; }
+  .num {
+    flex: none;
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: 15px;
+    color: var(--card);
+    background: var(--accent);
+    border-radius: 4px;
+    padding: 1px 8px;
+  }
+  h2 {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    font-size: 19px;
+    line-height: 1.4;
+    margin: 0;
+  }
+  .sec-time { font-size: 13px; color: var(--ink-soft); margin: -4px 0 10px; }
+
+  .warn {
+    background: var(--warn-bg);
+    color: var(--warn-ink);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  ul.tl {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  ul.tl li + li { border-top: 1px dashed var(--line); }
+  ul.tl label {
+    display: grid;
+    grid-template-columns: 64px 1fr 28px;
+    gap: 10px;
+    align-items: start;
+    padding: 12px;
+    cursor: pointer;
+  }
+  .t {
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 1.3;
+  }
+  .t small { display: block; font-weight: 400; font-size: 12px; color: var(--ink-soft); }
+  .what { min-width: 0; }
+  .ttl { font-weight: 600; }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    border-radius: 4px;
+    padding: 0 6px;
+    margin-right: 6px;
+    border: 1px solid currentColor;
+    vertical-align: 2px;
+  }
+  .train .tag { color: var(--train); }
+  .walk .tag { color: var(--walk); }
+  .spot .tag { color: var(--spot); }
+  .spot .ttl { font-size: 17px; }
+  .desc { font-size: 14px; color: var(--ink-soft); margin-top: 2px; }
+  .links { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .links a {
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+    padding: 3px 12px;
+  }
+  .links a.video { color: var(--ink); border-color: var(--line); background: var(--paper); }
+  input[type="checkbox"] {
+    width: 22px;
+    height: 22px;
+    margin: 2px 0 0;
+    accent-color: var(--accent);
+  }
+  li:has(input:checked) .t,
+  li:has(input:checked) .ttl,
+  li:has(input:checked) .desc { color: var(--done); text-decoration: line-through; }
+  li.now { background: var(--now-bg); }
+  li.now .t::after {
+    content: "いまここ";
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .fallback {
+    margin-top: 10px;
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    font-size: 14px;
+    background: var(--accent-soft);
+  }
+  .fallback b { display: block; margin-bottom: 4px; }
+
+  footer {
+    margin-top: 36px;
+    padding-top: 16px;
+    border-top: 3px double var(--line);
+    text-align: center;
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    color: var(--ink-soft);
+  }
+  button.reset {
+    margin-top: 12px;
+    font: inherit;
+    font-size: 13px;
+    color: var(--ink-soft);
+    background: none;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 6px 14px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <span class="kicker">土曜ダイヤ</span>
+  <h1>昭和レトロ＆デカ盛り満喫の<br>お散歩しおり</h1>
+  <p class="date">2026年11月21日（土）　08:49 出発 → 14:30 喫茶店</p>
+</header>
+
+<p class="notice">お出かけ当日は、乗換案内アプリ等で21日（土）の最新ダイヤを念のためご確認ください。</p>
+
+<nav aria-label="目次">
+  <a href="#s1">01 出発</a>
+  <a href="#s2">02 魚河岸通り</a>
+  <a href="#s3">03 国道駅</a>
+  <a href="#s4">04 ばーく</a>
+  <a href="#s5">05 海芝浦</a>
+  <a href="#s6">06 キリン</a>
+  <a href="#s7">07 喫茶ミネ</a>
+</nav>
+
+<section id="s1">
+  <div class="sec-head"><span class="num">01</span><h2>出発〜生麦へ</h2></div>
+  <ul class="tl">
+    <li class="train" data-at="08:49"><label>
+      <span class="t">08:49</span>
+      <span class="what"><span class="ttl"><span class="tag">電車</span>日吉本町駅 発</span>
+        <span class="desc">横浜市営地下鉄グリーンライン（日吉行）</span></span>
+      <input type="checkbox">
+    </label></li>
+    <li class="train" data-at="08:51"><label>
+      <span class="t">08:51</span>
+      <span class="what"><span class="ttl"><span class="tag">乗換</span>日吉駅 着</span>
+        <span class="desc">東急東横線へ乗り換え</span></span>
+      <input type="checkbox">
+    </label></li>
+    <li class="train" data-at="08:59"><label>
+      <span class="t">08:59</span>
+      <span class="what"><span class="ttl"><span class="tag">電車</span>日吉駅 発</span>
+        <span class="desc">東急東横線 各駅停車（元町・中華街行）</span></span>
+      <input type="checkbox">
+    </label></li>
+    <li class="train" data-at="09:19"><label>
+      <span class="t">09:19</span>
+      <span class="what"><span class="ttl"><span class="tag">乗換</span>横浜駅 着</span>
+        <span class="desc">京急本線へ乗り換え</span></span>
+      <input type="checkbox">
+    </label></li>
+    <li class="train" data-at="09:31"><label>
+      <span class="t">09:31</span>
+      <span class="what"><span class="ttl"><span class="tag">電車</span>横浜駅 発</span>
+        <span class="desc">京急本線（品川行）</span></span>
+      <input type="checkbox">
+    </label></li>
+    <li class="train" data-at="09:47"><label>
+      <span class="t">09:47</span>
+      <span class="what"><span class="ttl">生麦駅 着</span></span>
+      <input type="checkbox">
+    </label></li>
+  </ul>
+</section>
+
+<section id="s2">
+  <div class="sec-head"><span class="num">02</span><h2>午前前半：魚河岸通りを歩き抜ける</h2></div>
+  <ul class="tl">
+    <li class="spot" data-at="09:50"><label>
+      <span class="t">09:50<small>〜10:15</small></span>
+      <span class="what"><span class="ttl">生麦駅 → 魚河岸通り → 国道駅</span>
+        <span class="desc">旧東海道の風情が残る約400mの魚河岸通りを、国道駅方面へのんびり歩き抜けます。（生麦駅には戻りません）</span>
+        <span class="links"><a href="https://www.google.com/maps/search/?api=1&query=%E7%94%9F%E9%BA%A6%E9%AD%9A%E6%B2%B3%E5%B2%B8%E9%80%9A%E3%82%8A" target="_blank" rel="noopener">地図を開く</a>
+          <a class="video" href="https://www.youtube.com/watch?v=MxyTNxw_fec&t=103s" target="_blank" rel="noopener">▶ 01:43〜 生麦のレトロ商店街</a>
+          <a class="video" href="https://www.youtube.com/watch?v=MxyTNxw_fec&t=397s" target="_blank" rel="noopener">▶ 06:37〜 旧東海道の魚河岸</a></span></span>
+      <input type="checkbox">
+    </label></li>
+  </ul>
+</section>
+
+<section id="s3">
+  <div class="sec-head"><span class="num">03</span><h2>午前後半：昭和の時が止まる「国道駅」を探索</h2></div>
+  <ul class="tl">
+    <li class="spot" data-at="10:15"><label>
+      <span class="t">10:15<small>〜10:35</small></span>
+      <span class="what"><span class="ttl">国道駅 の探索</span>
+        <span class="desc">昭和5年の開業当時そのままの姿を残す、独特の重厚感とレトロな空気が漂う高架下の無人駅を見学します。</span>
+        <span class="links"><a href="https://www.google.com/maps/search/?api=1&query=%E5%9B%BD%E9%81%93%E9%A7%85+%E7%A5%9E%E5%A5%88%E5%B7%9D%E7%9C%8C%E6%A8%AA%E6%B5%9C%E5%B8%82%E9%B6%B4%E8%A6%8B%E5%8C%BA" target="_blank" rel="noopener">地図を開く</a>
+          <a class="video" href="https://www.youtube.com/watch?v=MxyTNxw_fec&t=869s" target="_blank" rel="noopener">▶ 14:29〜 昭和初期の無人駅（国道駅）</a></span></span>
+      <input type="checkbox">
+    </label></li>
+  </ul>
+</section>
+
+<section id="s4">
+  <div class="sec-head"><span class="num">04</span><h2>ランチ：オープンと同時に「レストラン ばーく」へ</h2></div>
+  <div class="warn">⚠️ 10:35に国道駅を出発</div>
+  <ul class="tl">
+    <li class="walk" data-at="10:35"><label>
+      <span class="t">10:35<small>〜10:53</small></span>
+      <span class="what"><span class="ttl"><span class="tag">徒歩</span>国道駅からばーくへ</span>
+        <span class="desc">約15分</span></span>
+      <input type="checkbox">
+    </label></li>
+    <li class="spot" data-at="11:00"><label>
+      <span class="t">11:00<small>〜11:55</small></span>
+      <span class="what"><span class="ttl">レストラン ばーく</span>
+        <span class="desc">JR鶴見駅西口 徒歩約2分／土曜は11:00〜14:00営業。開店の少し前に到着して入店！名物の巨大ハムカツやデカ盛り洋食ランチを堪能します。</span>
+        <span class="links"><a href="https://www.google.com/maps/search/?api=1&query=%E3%83%AC%E3%82%B9%E3%83%88%E3%83%A9%E3%83%B3%E3%81%B0%E3%83%BC%E3%81%8F+%E6%A8%AA%E6%B5%9C%E5%B8%82%E9%B6%B4%E8%A6%8B%E5%8C%BA%E8%B1%8A%E5%B2%A1%E7%94%BA1-17" target="_blank" rel="noopener">地図を開く</a>
+          <a class="video" href="https://www.youtube.com/watch?v=XffXcPQqGpg&t=157s" target="_blank" rel="noopener">▶ 02:37〜 レストランばーく（鶴見編）</a>
+          <a class="video" href="https://www.youtube.com/watch?v=MxyTNxw_fec&t=1014s" target="_blank" rel="noopener">▶ 16:54〜 鶴見の街・ばーくへ（生麦編）</a></span></span>
+      <input type="checkbox">
+    </label></li>
+  </ul>
+</section>
+
+<section id="s5">
+  <div class="sec-head"><span class="num">05</span><h2>12時台のハイライト：海を望む終着駅「海芝浦駅」へ</h2></div>
+  <div class="warn">⚠️ 11:55にはお店を出発（時間厳守）</div>
+  <ul class="tl">
+    <li class="walk" data-at="11:55"><label>
+      <span class="t">11:55<small>〜12:05</small></span>
+      <span class="what"><span class="ttl"><span class="tag">徒歩</span>JR鶴見駅の鶴見線ホームへ移動</span></span>
+      <input type="checkbox">
+    </label></li>
+    <li class="train" data-at="12:10"><label>
+      <span class="t">12:10</span>
+      <span class="what"><span class="ttl"><span class="tag">電車</span>JR鶴見駅 発</span>
+        <span class="desc">JR鶴見線 海芝浦行（当駅始発）。12:12に午前に歩いた国道駅を通ります。</span></span>
+      <input type="checkbox">
+    </label></li>
+    <li class="spot" data-at="12:21"><label>
+      <span class="t">12:21<small>〜12:36</small></span>
+      <span class="what"><span class="ttl">海芝浦駅（海芝公園）で絶景満喫</span>
+        <span class="desc">ホームの目の前が海という唯一無二の景色を堪能。一般客は改札を出られないため、必ず同じ電車の折り返しに乗車します。</span>
+        <span class="links"><a href="https://www.google.com/maps/search/?api=1&query=%E6%B5%B7%E8%8A%9D%E6%B5%A6%E9%A7%85" target="_blank" rel="noopener">地図を開く</a></span></span>
+      <input type="checkbox">
+    </label></li>
+    <li class="train" data-at="12:36"><label>
+      <span class="t">12:36</span>
+      <span class="what"><span class="ttl"><span class="tag">電車</span>海芝浦駅 発</span>
+        <span class="desc">JR鶴見線 鶴見行（折り返し）</span></span>
+      <input type="checkbox">
+    </label></li>
+    <li class="train" data-at="12:47"><label>
+      <span class="t">12:47</span>
+      <span class="what"><span class="ttl">鶴見駅 着</span></span>
+      <input type="checkbox">
+    </label></li>
+  </ul>
+  <div class="fallback">
+    <b>🕐 12:10発に乗り遅れたら</b>
+    次の海芝浦行は鶴見 13:30発です（海芝浦 13:41着 → 13:56発 → 鶴見 14:07着）。以降の予定は約1時間20分ずれるので、06・07の電車は乗換案内アプリで調べ直してください。
+  </div>
+</section>
+
+<section id="s6">
+  <div class="sec-head"><span class="num">06</span><h2>午後前半：キリンビール横浜工場に立ち寄り</h2></div>
+  <ul class="tl">
+    <li class="walk" data-at="12:47"><label>
+      <span class="t">12:47<small>〜12:55</small></span>
+      <span class="what"><span class="ttl"><span class="tag">徒歩</span>JR鶴見駅から京急鶴見駅へ</span></span>
+      <input type="checkbox">
+    </label></li>
+    <li class="train" data-at="12:59"><label>
+      <span class="t">12:59</span>
+      <span class="what"><span class="ttl"><span class="tag">電車</span>京急鶴見駅 発</span>
+        <span class="desc">京急本線（浦賀行）</span></span>
+      <input type="checkbox">
+    </label></li>
+    <li class="train" data-at="13:02"><label>
+      <span class="t">13:02</span>
+      <span class="what"><span class="ttl">生麦駅 着</span></span>
+      <input type="checkbox">
+    </label></li>
+    <li class="walk" data-at="13:05"><label>
+      <span class="t">13:05<small>〜13:20</small></span>
+      <span class="what"><span class="ttl"><span class="tag">徒歩</span>キリンビール横浜工場へ</span>
+        <span class="desc">約15分</span></span>
+      <input type="checkbox">
+    </label></li>
+    <li class="spot" data-at="13:20"><label>
+      <span class="t">13:20<small>〜14:00</small></span>
+      <span class="what"><span class="ttl">キリンビール横浜工場</span>
+        <span class="desc">工場見学はせず、庭園やショップを軽く見て回ります。席が空いていれば、レストラン「キリン横浜ビアホール」（11:00〜22:00・予約なし）で一息。</span>
+        <span class="links"><a href="https://www.google.com/maps/search/?api=1&query=%E3%82%AD%E3%83%AA%E3%83%B3%E3%83%93%E3%83%BC%E3%83%AB%E6%A8%AA%E6%B5%9C%E5%B7%A5%E5%A0%B4" target="_blank" rel="noopener">地図を開く</a>
+          <a class="video" href="https://www.youtube.com/watch?v=1rHPQWY8FSM&t=773s" target="_blank" rel="noopener">▶ 12:53〜 ビール工場へ</a></span></span>
+      <input type="checkbox">
+    </label></li>
+    <li class="walk" data-at="14:00"><label>
+      <span class="t">14:00<small>〜14:15</small></span>
+      <span class="what"><span class="ttl"><span class="tag">徒歩</span>生麦駅へ</span>
+        <span class="desc">約15分</span></span>
+      <input type="checkbox">
+    </label></li>
+  </ul>
+</section>
+
+<section id="s7">
+  <div class="sec-head"><span class="num">07</span><h2>午後後半：レトロな喫茶店「喫茶ミネ」で一息</h2></div>
+  <ul class="tl">
+    <li class="train" data-at="14:23"><label>
+      <span class="t">14:23</span>
+      <span class="what"><span class="ttl"><span class="tag">電車</span>生麦駅 発</span>
+        <span class="desc">京急本線（浦賀行）</span></span>
+      <input type="checkbox">
+    </label></li>
+    <li class="train" data-at="14:26"><label>
+      <span class="t">14:26</span>
+      <span class="what"><span class="ttl">子安駅 着</span>
+        <span class="desc">喫茶ミネへ徒歩約2分</span></span>
+      <input type="checkbox">
+    </label></li>
+    <li class="spot" data-at="14:30"><label>
+      <span class="t">14:30<small>〜</small></span>
+      <span class="what"><span class="ttl">喫茶ミネ</span>
+        <span class="desc">動画に登場したテーブルゲーム台があるノスタルジックな喫茶店で、歩き疲れた体を休めながらコーヒーを楽しみます。</span>
+        <span class="links">
+          <a href="https://www.google.com/maps/search/?api=1&query=%E5%96%AB%E8%8C%B6%E3%83%9F%E3%83%8D+%E6%A8%AA%E6%B5%9C%E5%B8%82%E7%A5%9E%E5%A5%88%E5%B7%9D%E5%8C%BA%E4%B8%83%E5%B3%B6%E7%94%BA137" target="_blank" rel="noopener">地図を開く</a>
+          <a href="tel:0454023466">電話 045-402-3466</a>
+          <a class="video" href="https://www.youtube.com/watch?v=wXM4P-Mtf1k&t=1004s" target="_blank" rel="noopener">▶ 16:44〜 テーブルゲームの喫茶店</a>
+        </span></span>
+      <input type="checkbox">
+    </label></li>
+  </ul>
+</section>
+
+<footer>
+  お疲れ様でした！
+  <div><button class="reset" type="button" id="reset">チェックをすべて外す</button></div>
+</footer>
+
+</div>
+<script>
+(function () {
+  var KEY = "shiori-2026-11-21";
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('ul.tl input[type="checkbox"]'));
+
+  function load() {
+    try { return JSON.parse(localStorage.getItem(KEY) || "[]"); } catch (e) { return []; }
+  }
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify(boxes.map(function (b) { return b.checked; }))); } catch (e) { /* 保存できない環境ではチェックは画面を閉じるまで有効 */ }
+  }
+
+  var saved = load();
+  boxes.forEach(function (b, i) {
+    b.checked = saved[i] === true;
+    b.addEventListener("change", save);
+  });
+  document.getElementById("reset").addEventListener("click", function () {
+    boxes.forEach(function (b) { b.checked = false; });
+    save();
+  });
+
+  function markNow() {
+    var d = new Date();
+    var rows = Array.prototype.slice.call(document.querySelectorAll("li[data-at]"));
+    rows.forEach(function (r) { r.classList.remove("now"); });
+    if (d.getFullYear() !== 2026 || d.getMonth() !== 10 || d.getDate() !== 21) return;
+    var mins = d.getHours() * 60 + d.getMinutes();
+    var current = null;
+    rows.forEach(function (r) {
+      var p = r.getAttribute("data-at").split(":");
+      if (Number(p[0]) * 60 + Number(p[1]) <= mins) current = r;
+    });
+    if (current && mins < 17 * 60) current.classList.add("now");
+  }
+  markNow();
+  setInterval(markNow, 30000);
+})();
+</script>
+</body>
+</html>
