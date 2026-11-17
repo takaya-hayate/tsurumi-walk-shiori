@@ -179,7 +179,7 @@
   }
   .route {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 8px;
   }
   .route a {
@@ -550,6 +550,47 @@
       <circle class="k f-acc" cx="210" cy="61" r="4"/>
       <circle class="k f-acc" cx="210" cy="76" r="4"/>
     </symbol>
+
+    <symbol id="il-harbor" viewBox="0 0 240 120">
+      <circle class="f-sun" cx="214" cy="26" r="11"/>
+      <rect class="f-sea" x="0" y="86" width="240" height="34"/>
+      <path class="k" d="M26 70v24M48 70v24M70 70v24M94 74v20M110 74v20M126 74v20"/>
+      <rect class="k f-wood" x="20" y="44" width="56" height="26"/>
+      <path class="k f-gray" d="M14 44l34-18l34 18z"/>
+      <rect class="k f-paper" x="30" y="52" width="12" height="10"/>
+      <rect class="k f-dark" x="54" y="52" width="12" height="18"/>
+      <rect class="k f-paper" x="88" y="38" width="44" height="36"/>
+      <path class="k f-acc" d="M82 38h56l-8-12H90z"/>
+      <rect class="k f-sea" x="96" y="47" width="12" height="10"/>
+      <rect class="k f-sea" x="114" y="47" width="12" height="10"/>
+      <path class="k" d="M84 74h52"/>
+      <path class="k" d="M183 74V50M183 60l20 12"/>
+      <path class="k f-acc" d="M183 48h14l-4 5l4 5h-14z"/>
+      <rect class="k f-paper" x="168" y="74" width="28" height="16"/>
+      <path class="k f-wood" d="M146 90h80l-12 16h-56z"/>
+      <path class="k thin s-foam" d="M8 104q8-6 16 0t16 0M86 112q8-6 16 0t16 0M122 100q6-5 12 0"/>
+    </symbol>
+
+    <symbol id="il-arcade" viewBox="0 0 240 120">
+      <path class="k" d="M22 106V48M218 106V48"/>
+      <path class="k f-teal" d="M14 46Q120 4 226 46v8Q120 14 14 54z"/>
+      <rect class="k f-paper" x="34" y="68" width="62" height="38"/>
+      <path class="k f-acc" d="M30 68h70l-6-12H36z"/>
+      <rect class="k f-wood" x="44" y="82" width="14" height="24"/>
+      <rect class="k f-sky" x="66" y="80" width="22" height="14"/>
+      <rect class="k f-paper" x="144" y="68" width="62" height="38"/>
+      <path class="k f-sun" d="M140 68h70l-6-12h-58z"/>
+      <rect class="k f-sky" x="152" y="80" width="22" height="14"/>
+      <rect class="k f-wood" x="182" y="82" width="14" height="24"/>
+      <rect class="k f-paper" x="84" y="28" width="72" height="20" rx="3"/>
+      <text class="il-text" x="120" y="42" text-anchor="middle">大口通</text>
+      <path class="k thin" d="M106 48v8M134 48v8"/>
+      <circle class="k f-acc" cx="106" cy="62" r="6"/>
+      <circle class="k f-acc" cx="134" cy="62" r="6"/>
+      <circle class="f-dark" cx="120" cy="86" r="5"/>
+      <path class="f-dark" d="M112 106V98a8 8 0 0 1 16 0v8z"/>
+      <path class="k" d="M8 106h224"/>
+    </symbol>
   </defs>
 </svg>
 
@@ -559,7 +600,7 @@
   <header>
     <span class="kicker">土曜ダイヤ</span>
     <h1>昭和レトロ＆デカ盛り満喫の<br>お散歩しおり</h1>
-    <p class="date">2026年11月21日（土）　08:49 出発 → 14:30 喫茶店</p>
+    <p class="date">2026年11月21日（土）　08:49 出発 → 16:00頃 大口駅</p>
   </header>
 
   <p class="notice">お出かけ当日は、乗換案内アプリ等で21日（土）の最新ダイヤを念のためご確認ください。</p>
@@ -572,7 +613,9 @@
     <a href="#s4" data-go="4"><svg viewBox="0 0 240 120" aria-hidden="true"><use href="#il-cutlet"/></svg><b>ばーく</b><span>11:00</span></a>
     <a href="#s5" data-go="5"><svg viewBox="0 0 240 120" aria-hidden="true"><use href="#il-sea"/></svg><b>海芝浦</b><span>12:21</span></a>
     <a href="#s6" data-go="6"><svg viewBox="0 0 240 120" aria-hidden="true"><use href="#il-beer"/></svg><b>キリン工場</b><span>13:20</span></a>
-    <a href="#s7" data-go="7"><svg viewBox="0 0 240 120" aria-hidden="true"><use href="#il-coffee"/></svg><b>喫茶ミネ</b><span>14:30</span></a>
+    <a href="#s7" data-go="7"><svg viewBox="0 0 240 120" aria-hidden="true"><use href="#il-harbor"/></svg><b>子安浜</b><span>14:31</span></a>
+    <a href="#s8" data-go="8"><svg viewBox="0 0 240 120" aria-hidden="true"><use href="#il-coffee"/></svg><b>喫茶ミネ</b><span>15:00</span></a>
+    <a href="#s9" data-go="9"><svg viewBox="0 0 240 120" aria-hidden="true"><use href="#il-arcade"/></svg><b>大口通商店街</b><span>15:40</span></a>
   </nav>
 
   <button class="modebtn js-mode" type="button">📖 ページ式で見る</button>
@@ -711,7 +754,7 @@
   </ul>
   <div class="fallback">
     <b>🕐 12:10発に乗り遅れたら</b>
-    次の海芝浦行は鶴見 13:30発です（海芝浦 13:41着 → 13:56発 → 鶴見 14:07着）。以降の予定は約1時間20分ずれるので、06・07の電車は乗換案内アプリで調べ直してください。
+    次の海芝浦行は鶴見 13:30発です（海芝浦 13:41着 → 13:56発 → 鶴見 14:07着）。以降の予定は約1時間20分ずれるので、06以降の電車は乗換案内アプリで調べ直してください。
   </div>
 </section>
 
@@ -759,8 +802,8 @@
 </section>
 
 <section class="page" id="s7">
-  <svg class="illust" viewBox="0 0 240 120" role="img" aria-label="コーヒーとテーブルゲーム台のイラスト"><use href="#il-coffee"/></svg>
-  <div class="sec-head"><span class="num">07</span><h2>午後後半：レトロな喫茶店「喫茶ミネ」で一息</h2></div>
+  <svg class="illust" viewBox="0 0 240 120" role="img" aria-label="水辺にせり出した家と漁船のイラスト"><use href="#il-harbor"/></svg>
+  <div class="sec-head"><span class="num">07</span><h2>午後後半：子安の水上集落「子安浜」を歩く</h2></div>
   <ul class="tl">
     <li class="train" data-at="14:23"><label>
       <span class="t">14:23</span>
@@ -771,11 +814,37 @@
     <li class="train" data-at="14:26"><label>
       <span class="t">14:26</span>
       <span class="what"><span class="ttl">子安駅 着</span>
-        <span class="desc">喫茶ミネへ徒歩約2分</span></span>
+        <span class="desc">子安浜へ徒歩約5分（第一京浜を渡って海側へ）</span></span>
       <input type="checkbox">
     </label></li>
-    <li class="spot" data-at="14:30"><label>
-      <span class="t">14:30<small>〜</small></span>
+    <li class="spot" data-at="14:31"><label>
+      <span class="t">14:31<small>〜14:50</small></span>
+      <span class="what"><span class="ttl">子安浜（水上集落）</span>
+        <span class="desc">入江川沿いに、水面へせり出した家や小屋、漁船が並ぶ漁師町の風景を歩きます。暮らしの場なので、静かに見て回ります。</span>
+        <span class="links"><a href="https://www.google.com/maps/search/?api=1&query=%E5%AD%90%E5%AE%89%E6%B5%9C+%E6%A8%AA%E6%B5%9C%E5%B8%82%E7%A5%9E%E5%A5%88%E5%B7%9D%E5%8C%BA" target="_blank" rel="noopener">地図を開く</a></span></span>
+      <input type="checkbox">
+    </label></li>
+    <li class="walk" data-at="14:50"><label>
+      <span class="t">14:50<small>〜14:55</small></span>
+      <span class="what"><span class="ttl"><span class="tag">徒歩</span>子安駅のほうへ戻る</span>
+        <span class="desc">約5分</span></span>
+      <input type="checkbox">
+    </label></li>
+  </ul>
+</section>
+
+<section class="page" id="s8">
+  <svg class="illust" viewBox="0 0 240 120" role="img" aria-label="コーヒーとテーブルゲーム台のイラスト"><use href="#il-coffee"/></svg>
+  <div class="sec-head"><span class="num">08</span><h2>ひと休み：レトロな喫茶店「喫茶ミネ」</h2></div>
+  <ul class="tl">
+    <li class="walk" data-at="14:55"><label>
+      <span class="t">14:55<small>〜15:00</small></span>
+      <span class="what"><span class="ttl"><span class="tag">徒歩</span>トンネル・ガードを抜けて線路の北側へ</span>
+        <span class="desc">子安駅そばの地下道とガードをくぐります。喫茶ミネは子安駅から徒歩約2分。</span></span>
+      <input type="checkbox">
+    </label></li>
+    <li class="spot" data-at="15:00"><label>
+      <span class="t">15:00<small>〜15:40</small></span>
       <span class="what"><span class="ttl">喫茶ミネ</span>
         <span class="desc">動画に登場したテーブルゲーム台があるノスタルジックな喫茶店で、歩き疲れた体を休めながらコーヒーを楽しみます。</span>
         <span class="links">
@@ -788,8 +857,28 @@
   </ul>
 </section>
 
-<div class="page end" id="s8">
-  <svg class="illust" viewBox="0 0 240 120" role="img" aria-label="コーヒーのイラスト"><use href="#il-coffee"/></svg>
+<section class="page" id="s9">
+  <svg class="illust" viewBox="0 0 240 120" role="img" aria-label="アーケード商店街のイラスト"><use href="#il-arcade"/></svg>
+  <div class="sec-head"><span class="num">09</span><h2>締めくくり：商店街を歩いて大口駅へ</h2></div>
+  <ul class="tl">
+    <li class="spot" data-at="15:40"><label>
+      <span class="t">15:40<small>〜16:00</small></span>
+      <span class="what"><span class="ttl">大口1番街 → 大口通商店街</span>
+        <span class="desc">子安駅側から大口駅まで約800m、商店街が続きます。アーケードの大口通商店街をぶらぶら歩きます。</span>
+        <span class="links"><a href="https://www.google.com/maps/search/?api=1&query=%E5%A4%A7%E5%8F%A3%E9%80%9A%E5%95%86%E5%BA%97%E8%A1%97" target="_blank" rel="noopener">地図を開く</a></span></span>
+      <input type="checkbox">
+    </label></li>
+    <li class="train" data-at="16:00"><label>
+      <span class="t">16:00<small>頃</small></span>
+      <span class="what"><span class="ttl">JR大口駅 着</span>
+        <span class="desc">帰りはJR横浜線で菊名へ出て、東急東横線に乗り換えます。</span></span>
+      <input type="checkbox">
+    </label></li>
+  </ul>
+</section>
+
+<div class="page end" id="s10">
+  <svg class="illust" viewBox="0 0 240 120" role="img" aria-label="電車のイラスト"><use href="#il-train"/></svg>
   <p>お疲れ様でした！</p>
   <div><button class="reset" type="button" id="reset">チェックをすべて外す</button></div>
 </div>
@@ -798,14 +887,14 @@
 
 <div class="bar" id="bar">
   <button type="button" id="prev" aria-label="前のページ">‹ 前へ</button>
-  <span class="pos" id="pos" aria-live="polite">1 / 9</span>
+  <span class="pos" id="pos" aria-live="polite">1 / 11</span>
   <button type="button" id="next" aria-label="次のページ">次へ ›</button>
   <button type="button" class="js-mode" aria-label="スクロール表示に切り替える">一覧</button>
 </div>
 
 <script>
 (function () {
-  var KEY = "shiori-2026-11-21";
+  var KEY = "shiori-2026-11-21-v2";
   var MODE_KEY = "shiori-mode";
   var slice = Array.prototype.slice;
   var boxes = slice.call(document.querySelectorAll('ul.tl input[type="checkbox"]'));
