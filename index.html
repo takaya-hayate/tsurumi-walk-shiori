@@ -255,13 +255,12 @@
     overflow: hidden;
   }
   ul.tl li + li { border-top: 1px dashed var(--line); }
-  ul.tl label {
+  ul.tl .row {
     display: grid;
-    grid-template-columns: 64px 1fr 28px;
+    grid-template-columns: 64px 1fr;
     gap: 10px;
     align-items: start;
     padding: 12px;
-    cursor: pointer;
   }
   .t {
     font-variant-numeric: tabular-nums;
@@ -297,15 +296,6 @@
     padding: 3px 12px;
   }
   .links a.video { color: var(--ink); border-color: var(--line); background: var(--paper); }
-  input[type="checkbox"] {
-    width: 22px;
-    height: 22px;
-    margin: 2px 0 0;
-    accent-color: var(--accent);
-  }
-  li:has(input:checked) .t,
-  li:has(input:checked) .ttl,
-  li:has(input:checked) .desc { color: var(--done); text-decoration: line-through; }
   li.now { background: var(--now-bg); }
   li.now .t::after {
     content: "いまここ";
@@ -334,17 +324,6 @@
     color: var(--ink-soft);
   }
   .page.end p { font-size: 20px; margin: 8px 0; color: var(--ink); }
-  button.reset {
-    margin-top: 12px;
-    font: inherit;
-    font-size: 13px;
-    color: var(--ink-soft);
-    background: none;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    padding: 6px 14px;
-    min-height: 40px;
-  }
 
   /* ページ式表示 */
   .bar { display: none; }
@@ -432,7 +411,7 @@
     body.paged { overflow: visible; }
     body.paged .wrap { position: static; overflow: visible; }
     body.paged .page { position: static; height: auto; visibility: visible; overflow: visible; box-shadow: none; }
-    .bar, .modebtn, button.reset { display: none !important; }
+    .bar, .modebtn { display: none !important; }
   }
 </style>
 </head>
@@ -625,41 +604,35 @@
   <svg class="illust" viewBox="0 0 240 120" role="img" aria-label="電車のイラスト"><use href="#il-train"/></svg>
   <div class="sec-head"><span class="num">01</span><h2>電車を乗り継いで、生麦へ</h2></div>
   <ul class="tl">
-    <li class="train" data-at="08:49"><label>
+    <li class="train" data-at="08:49"><div class="row">
       <span class="t">08:49</span>
       <span class="what"><span class="ttl"><span class="tag">電車</span>日吉本町駅 発</span>
         <span class="desc">横浜市営地下鉄グリーンライン（日吉行）</span></span>
-      <input type="checkbox">
-    </label></li>
-    <li class="train" data-at="08:51"><label>
+    </div></li>
+    <li class="train" data-at="08:51"><div class="row">
       <span class="t">08:51</span>
       <span class="what"><span class="ttl"><span class="tag">乗換</span>日吉駅 着</span>
         <span class="desc">東急東横線へ乗り換え</span></span>
-      <input type="checkbox">
-    </label></li>
-    <li class="train" data-at="08:59"><label>
+    </div></li>
+    <li class="train" data-at="08:59"><div class="row">
       <span class="t">08:59</span>
       <span class="what"><span class="ttl"><span class="tag">電車</span>日吉駅 発</span>
         <span class="desc">東急東横線 各駅停車（元町・中華街行）</span></span>
-      <input type="checkbox">
-    </label></li>
-    <li class="train" data-at="09:19"><label>
+    </div></li>
+    <li class="train" data-at="09:19"><div class="row">
       <span class="t">09:19</span>
       <span class="what"><span class="ttl"><span class="tag">乗換</span>横浜駅 着</span>
         <span class="desc">京急本線へ乗り換え</span></span>
-      <input type="checkbox">
-    </label></li>
-    <li class="train" data-at="09:31"><label>
+    </div></li>
+    <li class="train" data-at="09:31"><div class="row">
       <span class="t">09:31</span>
       <span class="what"><span class="ttl"><span class="tag">電車</span>横浜駅 発</span>
         <span class="desc">京急本線（品川行）</span></span>
-      <input type="checkbox">
-    </label></li>
-    <li class="train" data-at="09:47"><label>
+    </div></li>
+    <li class="train" data-at="09:47"><div class="row">
       <span class="t">09:47</span>
       <span class="what"><span class="ttl">生麦駅 着</span></span>
-      <input type="checkbox">
-    </label></li>
+    </div></li>
   </ul>
 </section>
 
@@ -667,15 +640,14 @@
   <svg class="illust" viewBox="0 0 240 120" role="img" aria-label="魚屋の軒先と魚のイラスト"><use href="#il-fish"/></svg>
   <div class="sec-head"><span class="num">02</span><h2>旧東海道の面影、魚河岸通り</h2></div>
   <ul class="tl">
-    <li class="spot" data-at="09:50"><label>
+    <li class="spot" data-at="09:50"><div class="row">
       <span class="t">09:50<small>〜10:15</small></span>
       <span class="what"><span class="ttl">生麦駅 → 魚河岸通り → 国道駅</span>
         <span class="desc">旧東海道の風情が残る約400mの魚河岸通りを、国道駅方面へのんびり歩き抜けます。（生麦駅には戻りません）</span>
         <span class="links"><a href="https://www.google.com/maps/search/?api=1&query=%E7%94%9F%E9%BA%A6%E9%AD%9A%E6%B2%B3%E5%B2%B8%E9%80%9A%E3%82%8A" target="_blank" rel="noopener">地図を開く</a>
           <a class="video" href="https://www.youtube.com/watch?v=MxyTNxw_fec&t=103s" target="_blank" rel="noopener">▶ 01:43〜 生麦のレトロ商店街</a>
           <a class="video" href="https://www.youtube.com/watch?v=MxyTNxw_fec&t=397s" target="_blank" rel="noopener">▶ 06:37〜 旧東海道の魚河岸</a></span></span>
-      <input type="checkbox">
-    </label></li>
+    </div></li>
   </ul>
 </section>
 
@@ -683,14 +655,13 @@
   <svg class="illust" viewBox="0 0 240 120" role="img" aria-label="高架下のアーチのイラスト"><use href="#il-arch"/></svg>
   <div class="sec-head"><span class="num">03</span><h2>昭和の時が止まる、国道駅</h2></div>
   <ul class="tl">
-    <li class="spot" data-at="10:15"><label>
+    <li class="spot" data-at="10:15"><div class="row">
       <span class="t">10:15<small>〜10:35</small></span>
       <span class="what"><span class="ttl">国道駅 の探索</span>
         <span class="desc">昭和5年の開業当時そのままの姿を残す、独特の重厚感とレトロな空気が漂う高架下の無人駅を見学します。</span>
         <span class="links"><a href="https://www.google.com/maps/search/?api=1&query=%E5%9B%BD%E9%81%93%E9%A7%85+%E7%A5%9E%E5%A5%88%E5%B7%9D%E7%9C%8C%E6%A8%AA%E6%B5%9C%E5%B8%82%E9%B6%B4%E8%A6%8B%E5%8C%BA" target="_blank" rel="noopener">地図を開く</a>
           <a class="video" href="https://www.youtube.com/watch?v=MxyTNxw_fec&t=869s" target="_blank" rel="noopener">▶ 14:29〜 昭和初期の無人駅（国道駅）</a></span></span>
-      <input type="checkbox">
-    </label></li>
+    </div></li>
   </ul>
 </section>
 
@@ -699,21 +670,19 @@
   <div class="sec-head"><span class="num">04</span><h2>名物の分厚いハムカツ、レストラン ばーく</h2></div>
   <div class="warn">⚠️ 10:35に国道駅を出発</div>
   <ul class="tl">
-    <li class="walk" data-at="10:35"><label>
+    <li class="walk" data-at="10:35"><div class="row">
       <span class="t">10:35<small>〜10:53</small></span>
       <span class="what"><span class="ttl"><span class="tag">徒歩</span>国道駅からばーくへ</span>
         <span class="desc">約15分</span></span>
-      <input type="checkbox">
-    </label></li>
-    <li class="spot" data-at="11:00"><label>
+    </div></li>
+    <li class="spot" data-at="11:00"><div class="row">
       <span class="t">11:00<small>〜11:55</small></span>
       <span class="what"><span class="ttl">レストラン ばーく</span>
         <span class="desc">JR鶴見駅西口 徒歩約2分／土曜は11:00〜14:00営業。開店の少し前に到着して入店！名物の巨大ハムカツやデカ盛り洋食ランチを堪能します。</span>
         <span class="links"><a href="https://www.google.com/maps/search/?api=1&query=%E3%83%AC%E3%82%B9%E3%83%88%E3%83%A9%E3%83%B3%E3%81%B0%E3%83%BC%E3%81%8F+%E6%A8%AA%E6%B5%9C%E5%B8%82%E9%B6%B4%E8%A6%8B%E5%8C%BA%E8%B1%8A%E5%B2%A1%E7%94%BA1-17" target="_blank" rel="noopener">地図を開く</a>
           <a class="video" href="https://www.youtube.com/watch?v=XffXcPQqGpg&t=157s" target="_blank" rel="noopener">▶ 02:37〜 レストランばーく（鶴見編）</a>
           <a class="video" href="https://www.youtube.com/watch?v=MxyTNxw_fec&t=1014s" target="_blank" rel="noopener">▶ 16:54〜 鶴見の街・ばーくへ（生麦編）</a></span></span>
-      <input type="checkbox">
-    </label></li>
+    </div></li>
   </ul>
 </section>
 
@@ -722,35 +691,30 @@
   <div class="sec-head"><span class="num">05</span><h2>海の上の終着駅、海芝浦</h2></div>
   <div class="warn">⚠️ 11:55にはお店を出発（時間厳守）</div>
   <ul class="tl">
-    <li class="walk" data-at="11:55"><label>
+    <li class="walk" data-at="11:55"><div class="row">
       <span class="t">11:55<small>〜12:05</small></span>
       <span class="what"><span class="ttl"><span class="tag">徒歩</span>JR鶴見駅の鶴見線ホームへ移動</span></span>
-      <input type="checkbox">
-    </label></li>
-    <li class="train" data-at="12:10"><label>
+    </div></li>
+    <li class="train" data-at="12:10"><div class="row">
       <span class="t">12:10</span>
       <span class="what"><span class="ttl"><span class="tag">電車</span>JR鶴見駅 発</span>
         <span class="desc">JR鶴見線 海芝浦行（当駅始発）。12:12に午前に歩いた国道駅を通ります。</span></span>
-      <input type="checkbox">
-    </label></li>
-    <li class="spot" data-at="12:21"><label>
+    </div></li>
+    <li class="spot" data-at="12:21"><div class="row">
       <span class="t">12:21<small>〜12:36</small></span>
       <span class="what"><span class="ttl">海芝浦駅（海芝公園）で絶景満喫</span>
         <span class="desc">ホームの目の前が海という唯一無二の景色を堪能。一般客は改札を出られないため、必ず同じ電車の折り返しに乗車します。</span>
         <span class="links"><a href="https://www.google.com/maps/search/?api=1&query=%E6%B5%B7%E8%8A%9D%E6%B5%A6%E9%A7%85" target="_blank" rel="noopener">地図を開く</a></span></span>
-      <input type="checkbox">
-    </label></li>
-    <li class="train" data-at="12:36"><label>
+    </div></li>
+    <li class="train" data-at="12:36"><div class="row">
       <span class="t">12:36</span>
       <span class="what"><span class="ttl"><span class="tag">電車</span>海芝浦駅 発</span>
         <span class="desc">JR鶴見線 鶴見行（折り返し）</span></span>
-      <input type="checkbox">
-    </label></li>
-    <li class="train" data-at="12:47"><label>
+    </div></li>
+    <li class="train" data-at="12:47"><div class="row">
       <span class="t">12:47</span>
       <span class="what"><span class="ttl">鶴見駅 着</span></span>
-      <input type="checkbox">
-    </label></li>
+    </div></li>
   </ul>
   <div class="fallback">
     <b>🕐 12:10発に乗り遅れたら</b>
@@ -762,42 +726,36 @@
   <svg class="illust" viewBox="0 0 240 120" role="img" aria-label="ビールジョッキと工場のタンクのイラスト"><use href="#il-beer"/></svg>
   <div class="sec-head"><span class="num">06</span><h2>ふらり寄り道、キリンビール横浜工場</h2></div>
   <ul class="tl">
-    <li class="walk" data-at="12:47"><label>
+    <li class="walk" data-at="12:47"><div class="row">
       <span class="t">12:47<small>〜12:55</small></span>
       <span class="what"><span class="ttl"><span class="tag">徒歩</span>JR鶴見駅から京急鶴見駅へ</span></span>
-      <input type="checkbox">
-    </label></li>
-    <li class="train" data-at="12:59"><label>
+    </div></li>
+    <li class="train" data-at="12:59"><div class="row">
       <span class="t">12:59</span>
       <span class="what"><span class="ttl"><span class="tag">電車</span>京急鶴見駅 発</span>
         <span class="desc">京急本線（浦賀行）</span></span>
-      <input type="checkbox">
-    </label></li>
-    <li class="train" data-at="13:02"><label>
+    </div></li>
+    <li class="train" data-at="13:02"><div class="row">
       <span class="t">13:02</span>
       <span class="what"><span class="ttl">生麦駅 着</span></span>
-      <input type="checkbox">
-    </label></li>
-    <li class="walk" data-at="13:05"><label>
+    </div></li>
+    <li class="walk" data-at="13:05"><div class="row">
       <span class="t">13:05<small>〜13:20</small></span>
       <span class="what"><span class="ttl"><span class="tag">徒歩</span>キリンビール横浜工場へ</span>
         <span class="desc">約15分</span></span>
-      <input type="checkbox">
-    </label></li>
-    <li class="spot" data-at="13:20"><label>
+    </div></li>
+    <li class="spot" data-at="13:20"><div class="row">
       <span class="t">13:20<small>〜14:00</small></span>
       <span class="what"><span class="ttl">キリンビール横浜工場</span>
         <span class="desc">工場見学はせず、庭園やショップを軽く見て回ります。席が空いていれば、レストラン「キリン横浜ビアホール」（11:00〜22:00・予約なし）で一息。</span>
         <span class="links"><a href="https://www.google.com/maps/search/?api=1&query=%E3%82%AD%E3%83%AA%E3%83%B3%E3%83%93%E3%83%BC%E3%83%AB%E6%A8%AA%E6%B5%9C%E5%B7%A5%E5%A0%B4" target="_blank" rel="noopener">地図を開く</a>
           <a class="video" href="https://www.youtube.com/watch?v=1rHPQWY8FSM&t=773s" target="_blank" rel="noopener">▶ 12:53〜 ビール工場へ</a></span></span>
-      <input type="checkbox">
-    </label></li>
-    <li class="walk" data-at="14:00"><label>
+    </div></li>
+    <li class="walk" data-at="14:00"><div class="row">
       <span class="t">14:00<small>〜14:15</small></span>
       <span class="what"><span class="ttl"><span class="tag">徒歩</span>生麦駅へ</span>
         <span class="desc">約15分</span></span>
-      <input type="checkbox">
-    </label></li>
+    </div></li>
   </ul>
 </section>
 
@@ -805,32 +763,28 @@
   <svg class="illust" viewBox="0 0 240 120" role="img" aria-label="水辺にせり出した家と漁船のイラスト"><use href="#il-harbor"/></svg>
   <div class="sec-head"><span class="num">07</span><h2>水辺の漁師町、子安浜</h2></div>
   <ul class="tl">
-    <li class="train" data-at="14:23"><label>
+    <li class="train" data-at="14:23"><div class="row">
       <span class="t">14:23</span>
       <span class="what"><span class="ttl"><span class="tag">電車</span>生麦駅 発</span>
         <span class="desc">京急本線（浦賀行）</span></span>
-      <input type="checkbox">
-    </label></li>
-    <li class="train" data-at="14:26"><label>
+    </div></li>
+    <li class="train" data-at="14:26"><div class="row">
       <span class="t">14:26</span>
       <span class="what"><span class="ttl">子安駅 着</span>
         <span class="desc">子安浜へ徒歩約5分（第一京浜を渡って海側へ）</span></span>
-      <input type="checkbox">
-    </label></li>
-    <li class="spot" data-at="14:31"><label>
+    </div></li>
+    <li class="spot" data-at="14:31"><div class="row">
       <span class="t">14:31<small>〜14:50</small></span>
       <span class="what"><span class="ttl">子安浜（水上集落）</span>
         <span class="desc">入江川沿いに、水面へせり出した家や小屋、漁船が並ぶ漁師町の風景を歩きます。暮らしの場なので、静かに見て回ります。</span>
         <span class="links"><a href="https://www.google.com/maps/search/?api=1&query=%E5%AD%90%E5%AE%89%E6%B5%9C+%E6%A8%AA%E6%B5%9C%E5%B8%82%E7%A5%9E%E5%A5%88%E5%B7%9D%E5%8C%BA" target="_blank" rel="noopener">地図を開く</a>
           <a class="video" href="https://www.youtube.com/watch?v=1rHPQWY8FSM&t=30s" target="_blank" rel="noopener">▶ 00:30〜 水上集落のある町（子安浜）</a></span></span>
-      <input type="checkbox">
-    </label></li>
-    <li class="walk" data-at="14:50"><label>
+    </div></li>
+    <li class="walk" data-at="14:50"><div class="row">
       <span class="t">14:50<small>〜14:55</small></span>
       <span class="what"><span class="ttl"><span class="tag">徒歩</span>子安駅のほうへ戻る</span>
         <span class="desc">約5分</span></span>
-      <input type="checkbox">
-    </label></li>
+    </div></li>
   </ul>
 </section>
 
@@ -838,14 +792,13 @@
   <svg class="illust" viewBox="0 0 240 120" role="img" aria-label="コーヒーとテーブルゲーム台のイラスト"><use href="#il-coffee"/></svg>
   <div class="sec-head"><span class="num">08</span><h2>レトロ喫茶でひと休み、喫茶ミネ</h2></div>
   <ul class="tl">
-    <li class="walk" data-at="14:55"><label>
+    <li class="walk" data-at="14:55"><div class="row">
       <span class="t">14:55<small>〜15:00</small></span>
       <span class="what"><span class="ttl"><span class="tag">徒歩</span>トンネル・ガードを抜けて線路の北側へ</span>
         <span class="desc">子安駅そばの地下道とガードをくぐります。喫茶ミネは子安駅から徒歩約2分。</span>
         <span class="links"><a class="video" href="https://www.youtube.com/watch?v=1rHPQWY8FSM&t=317s" target="_blank" rel="noopener">▶ 05:17〜 あの商店街へ（トンネル・ガードを抜けるシーン）</a></span></span>
-      <input type="checkbox">
-    </label></li>
-    <li class="spot" data-at="15:00"><label>
+    </div></li>
+    <li class="spot" data-at="15:00"><div class="row">
       <span class="t">15:00<small>〜15:40</small></span>
       <span class="what"><span class="ttl">喫茶ミネ</span>
         <span class="desc">動画に登場したテーブルゲーム台があるノスタルジックな喫茶店で、歩き疲れた体を休めながらコーヒーを楽しみます。</span>
@@ -854,8 +807,7 @@
           <a href="tel:0454023466">電話 045-402-3466</a>
           <a class="video" href="https://www.youtube.com/watch?v=wXM4P-Mtf1k&t=1004s" target="_blank" rel="noopener">▶ 16:44〜 テーブルゲームの喫茶店</a>
         </span></span>
-      <input type="checkbox">
-    </label></li>
+    </div></li>
   </ul>
 </section>
 
@@ -863,7 +815,7 @@
   <svg class="illust" viewBox="0 0 240 120" role="img" aria-label="アーケード商店街のイラスト"><use href="#il-arcade"/></svg>
   <div class="sec-head"><span class="num">09</span><h2>駄菓子屋「第二しんみせ」と大口通商店街</h2></div>
   <ul class="tl">
-    <li class="spot" data-at="15:40"><label>
+    <li class="spot" data-at="15:40"><div class="row">
       <span class="t">15:40<small>〜16:30</small></span>
       <span class="what"><span class="ttl">大口1番街 → 駄菓子屋「第二しんみせ」 → 大口通商店街</span>
         <span class="desc">昭和ビルヂング周辺にあるレトロな駄菓子屋さん「第二しんみせ」に立ち寄り、店内のじゃんけんゲームなどを楽しみます。その後、アーケードの大口通商店街をぶらぶら歩きます。</span>
@@ -871,21 +823,18 @@
           <a href="https://www.google.com/maps/search/?api=1&query=%E5%A4%A7%E5%8F%A3%E9%80%9A%E5%95%86%E5%BA%97%E8%A1%97" target="_blank" rel="noopener">商店街の地図</a>
           <a class="video" href="https://www.youtube.com/watch?v=1rHPQWY8FSM&t=987s" target="_blank" rel="noopener">▶ 16:27〜 昭和ビルヂングのある道・駄菓子屋「第二しんみせ」（じゃんけんゲーム等）</a>
           <a class="video" href="https://www.youtube.com/watch?v=1rHPQWY8FSM&t=1127s" target="_blank" rel="noopener">▶ 18:47〜 散歩で出会った商店街・大口エリア</a></span></span>
-      <input type="checkbox">
-    </label></li>
-    <li class="train" data-at="16:30"><label>
+    </div></li>
+    <li class="train" data-at="16:30"><div class="row">
       <span class="t">16:30<small>頃</small></span>
       <span class="what"><span class="ttl">JR大口駅 着</span>
         <span class="desc">帰りはJR横浜線で菊名へ出て、東急東横線に乗り換えます。</span></span>
-      <input type="checkbox">
-    </label></li>
+    </div></li>
   </ul>
 </section>
 
 <div class="page end" id="s10">
   <svg class="illust" viewBox="0 0 240 120" role="img" aria-label="電車のイラスト"><use href="#il-train"/></svg>
   <p>お疲れ様でした！</p>
-  <div><button class="reset" type="button" id="reset">チェックをすべて外す</button></div>
 </div>
 
 </div>
@@ -899,27 +848,8 @@
 
 <script>
 (function () {
-  var KEY = "shiori-2026-11-21-v2";
   var MODE_KEY = "shiori-mode";
   var slice = Array.prototype.slice;
-  var boxes = slice.call(document.querySelectorAll('ul.tl input[type="checkbox"]'));
-
-  /* チェック欄の保存 */
-  function load() {
-    try { return JSON.parse(localStorage.getItem(KEY) || "[]"); } catch (e) { return []; }
-  }
-  function save() {
-    try { localStorage.setItem(KEY, JSON.stringify(boxes.map(function (b) { return b.checked; }))); } catch (e) { /* 保存できない環境ではチェックは画面を閉じるまで有効 */ }
-  }
-  var saved = load();
-  boxes.forEach(function (b, i) {
-    b.checked = saved[i] === true;
-    b.addEventListener("change", save);
-  });
-  document.getElementById("reset").addEventListener("click", function () {
-    boxes.forEach(function (b) { b.checked = false; });
-    save();
-  });
 
   /* いまここ表示 */
   var rows = slice.call(document.querySelectorAll("li[data-at]"));
