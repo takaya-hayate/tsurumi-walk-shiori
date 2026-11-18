@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="format-detection" content="telephone=no">
 <meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#f6efe0">
 <title>鶴見＆国道 お散歩しおり</title>
 <style>
   :root {
@@ -34,73 +36,22 @@
     --il-pink: #e9a79a;
     --il-beer: #e6a532;
     --il-teal: #5d9d97;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --paper: #1d1916;
-      --card: #28221d;
-      --ink: #f0e6d6;
-      --ink-soft: #b5a796;
-      --line: #463c33;
-      --accent: #e8866c;
-      --accent-soft: #4a2a21;
-      --train: #7cc4bd;
-      --walk: #dcb866;
-      --spot: #e8866c;
-      --warn-bg: #4a3a12;
-      --warn-ink: #f5dc9a;
-      --now-bg: #3d3319;
-      --done: #7b6f63;
-      --il-bg: #231e19;
-      --il-ink: #e9dcc8;
-      --il-sky: #2c3d40;
-      --il-sea: #3d6f7c;
-      --il-sun: #e2b25a;
-      --il-wood: #9a7647;
-      --il-green: #6f8a55;
-      --il-gray: #6d6258;
-      --il-dark: #15110e;
-      --il-pink: #c9867a;
-      --il-beer: #d39a34;
-      --il-teal: #3f7a75;
-    }
-  }
-  :root[data-theme="dark"] {
-    --paper: #1d1916;
-    --card: #28221d;
-    --ink: #f0e6d6;
-    --ink-soft: #b5a796;
-    --line: #463c33;
-    --accent: #e8866c;
-    --accent-soft: #4a2a21;
-    --train: #7cc4bd;
-    --walk: #dcb866;
-    --spot: #e8866c;
-    --warn-bg: #4a3a12;
-    --warn-ink: #f5dc9a;
-    --now-bg: #3d3319;
-    --done: #7b6f63;
-    --il-bg: #231e19;
-    --il-ink: #e9dcc8;
-    --il-sky: #2c3d40;
-    --il-sea: #3d6f7c;
-    --il-sun: #e2b25a;
-    --il-wood: #9a7647;
-    --il-green: #6f8a55;
-    --il-gray: #6d6258;
-    --il-dark: #15110e;
-    --il-pink: #c9867a;
-    --il-beer: #d39a34;
-    --il-teal: #3f7a75;
+    /* しおりらしく、端末がダークモードでも紙の色で表示する */
+    color-scheme: light;
+    --round: "Hiragino Maru Gothic ProN", "Hiragino Maru Gothic Pro", "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
+    --plain: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+    --dots: radial-gradient(rgba(140, 110, 70, 0.17) 1px, transparent 1.3px);
   }
 
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
   body {
     margin: 0;
-    background: var(--paper);
+    background-color: var(--paper);
+    background-image: var(--dots);
+    background-size: 14px 14px;
     color: var(--ink);
-    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+    font-family: var(--round);
     font-size: 16px;
     line-height: 1.65;
   }
@@ -141,27 +92,78 @@
     border-radius: 14px;
   }
 
-  header { text-align: center; padding: 12px 0 20px; border-bottom: 3px double var(--line); }
+  /* 表紙 */
+  .cover-card {
+    position: relative;
+    text-align: center;
+    background: var(--card);
+    border: 2px solid var(--ink);
+    border-radius: 6px;
+    padding: 26px 14px 20px 30px;
+    box-shadow: 5px 5px 0 var(--line);
+  }
+  /* 製本テープ */
+  .cover-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 16px;
+    background: var(--accent);
+    border-right: 2px dashed var(--card);
+  }
   .kicker {
     display: inline-block;
-    font-size: 12px;
-    letter-spacing: 0.2em;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    color: var(--card);
+    background: var(--accent);
+    border-radius: 999px;
+    padding: 3px 12px 3px 16px;
+  }
+  h1 {
+    font-size: 24px;
+    font-size: clamp(20px, 6.4vw, 25px);
+    line-height: 1.4;
+    margin: 12px 0 0;
+  }
+  .date { font-size: 17px; font-weight: 700; margin: 0; }
+  .date-sub { font-size: 13px; color: var(--ink-soft); margin: 4px 0 0; }
+  .chip {
+    display: inline-block;
+    margin-left: 8px;
+    font-size: 11px;
     color: var(--accent);
     border: 1px solid var(--accent);
     border-radius: 999px;
-    padding: 2px 12px;
+    padding: 0 8px;
   }
-  h1 {
-    font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
-    font-size: 26px;
-    line-height: 1.35;
-    margin: 12px 0 6px;
-    text-wrap: balance;
+
+  /* マスキングテープ */
+  .pic { position: relative; width: min(100%, 320px); margin: 18px auto 14px; }
+  .pic .illust { width: 100%; margin: 0; }
+  section.page { position: relative; }
+  .pic::before,
+  section.page:not(.plain)::before {
+    content: "";
+    position: absolute;
+    top: -9px;
+    left: 50%;
+    width: 84px;
+    height: 20px;
+    margin-left: -42px;
+    background-color: var(--tape, rgba(233, 180, 76, 0.85));
+    background-image: repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.35) 0, rgba(255, 255, 255, 0.35) 5px, transparent 5px, transparent 10px);
+    transform: rotate(-3deg);
+    pointer-events: none;
   }
-  .date { color: var(--ink-soft); font-size: 14px; margin: 0; }
+  section.page:nth-of-type(3n+2)::before { --tape: rgba(93, 157, 151, 0.8); transform: rotate(2deg); }
+  section.page:nth-of-type(3n)::before { --tape: rgba(233, 167, 154, 0.9); transform: rotate(-1.5deg); }
 
   .notice {
-    margin: 16px 0 0;
+    margin: 20px 0 0;
     padding: 10px 12px;
     font-size: 13px;
     color: var(--ink-soft);
@@ -170,13 +172,54 @@
     border-radius: 12px;
   }
 
-  .route-title {
-    margin: 20px 0 8px;
-    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
-    font-size: 15px;
-    color: var(--ink-soft);
-    text-align: center;
+  /* ルート略図 */
+  .map {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 320 / 210;
+    background: var(--il-bg);
+    border: 1px solid var(--line);
+    border-radius: 14px;
   }
+  .rail { stroke: var(--train); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+  .path-walk { stroke: var(--walk); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 0.1 7; fill: none; }
+  .st { fill: var(--card); stroke: var(--il-ink); stroke-width: 2.5; }
+  .mk { fill: var(--accent); stroke: var(--card); stroke-width: 2; }
+  .mk-t { fill: var(--card); font-family: var(--plain); font-weight: 700; font-size: 11px; }
+  .map-t {
+    fill: var(--il-ink);
+    font-family: var(--round);
+    font-weight: 700;
+    font-size: 11px;
+    paint-order: stroke;
+    stroke: var(--il-bg);
+    stroke-width: 3px;
+    stroke-linejoin: round;
+  }
+  .map-s { fill: var(--ink-soft); font-family: var(--round); font-size: 9px; }
+  .legend { margin: 8px 0 0; font-size: 12px; color: var(--ink-soft); }
+  .legend span { white-space: nowrap; margin-right: 12px; }
+  .lg { display: inline-block; width: 26px; margin-right: 5px; vertical-align: middle; }
+  .lg-rail { height: 4px; border-radius: 2px; background: var(--train); }
+  .lg-walk { height: 0; border-top: 3px dotted var(--walk); }
+  .lg-num {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--card);
+    font-family: var(--plain);
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 16px;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .map-note { margin: 4px 0 16px; font-size: 12px; color: var(--ink-soft); }
+
   .route {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -221,15 +264,14 @@
   .sec-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px; }
   .num {
     flex: none;
-    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
-    font-size: 15px;
+    font-size: 14px;
+    font-weight: 700;
     color: var(--card);
     background: var(--accent);
-    border-radius: 4px;
-    padding: 1px 8px;
+    border-radius: 999px;
+    padding: 1px 10px;
   }
   h2 {
-    font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
     font-size: 19px;
     line-height: 1.4;
     margin: 0;
@@ -254,15 +296,44 @@
     border-radius: 12px;
     overflow: hidden;
   }
-  ul.tl li + li { border-top: 1px dashed var(--line); }
+  /* 時刻を点と線でつなぐ（線の中心は左から85px） */
+  ul.tl li { position: relative; }
+  ul.tl li::before {
+    content: "";
+    position: absolute;
+    left: 84px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--line);
+  }
+  ul.tl li:first-child::before { top: 23px; }
+  ul.tl li:last-child::before { bottom: auto; height: 23px; }
+  ul.tl li:only-child::before { display: none; }
+  ul.tl li::after {
+    content: "";
+    position: absolute;
+    left: 79px;
+    top: 17px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--card);
+    border: 3px solid var(--ink-soft);
+  }
+  ul.tl li.train::after { border-color: var(--train); }
+  ul.tl li.walk::after { border-color: var(--walk); }
+  ul.tl li.spot::after { border-color: var(--spot); background: var(--spot); }
+  ul.tl li.now::after { border-color: var(--accent); background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
   ul.tl .row {
     display: grid;
-    grid-template-columns: 64px 1fr;
-    gap: 10px;
+    grid-template-columns: 58px 1fr;
+    column-gap: 30px;
     align-items: start;
     padding: 12px;
   }
   .t {
+    font-family: var(--plain);
     font-variant-numeric: tabular-nums;
     font-weight: 700;
     font-size: 17px;
@@ -316,15 +387,67 @@
   }
   .fallback b { display: block; margin-bottom: 4px; }
 
+  /* もちもの・おやくそく */
+  ul.memo {
+    list-style: none;
+    margin: 0;
+    padding: 2px 12px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+  }
+  ul.memo li {
+    display: grid;
+    grid-template-columns: 34px 1fr;
+    column-gap: 10px;
+    align-items: start;
+    padding: 10px 0;
+  }
+  ul.memo.rules li { grid-template-columns: 52px 1fr; }
+  ul.memo li + li { border-top: 1px dashed var(--line); }
+  ul.memo b { display: block; }
+  ul.memo small { display: block; font-size: 13px; color: var(--ink-soft); }
+  .em { font-size: 22px; line-height: 1.2; text-align: center; }
+  .sono {
+    margin-top: 2px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.7;
+    color: var(--card);
+    background: var(--accent);
+    border-radius: 999px;
+    text-align: center;
+  }
+
+  /* 最後のページ */
   .page.end {
     margin-top: 36px;
     padding-top: 16px;
     border-top: 3px double var(--line);
     text-align: center;
-    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
-    color: var(--ink-soft);
   }
-  .page.end p { font-size: 20px; margin: 8px 0; color: var(--ink); }
+  .end-ttl { font-size: 22px; font-weight: 700; margin: 8px 0 0; }
+  .end-sub { font-size: 15px; color: var(--ink-soft); margin: 4px 0 20px; }
+  .memo-label { display: block; text-align: left; font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+  #memo {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0 12px;
+    font: inherit;
+    font-size: 16px;
+    line-height: 32px;
+    color: var(--ink);
+    background-color: var(--card);
+    background-image: repeating-linear-gradient(transparent 0, transparent 31px, var(--line) 31px, var(--line) 32px);
+    background-attachment: local;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    resize: vertical;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .memo-note { text-align: left; font-size: 12px; color: var(--ink-soft); margin: 6px 0 0; }
 
   /* ページ式表示 */
   .bar { display: none; }
@@ -352,7 +475,9 @@
     padding: calc(20px + env(safe-area-inset-top)) 16px 28px;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    background: var(--paper);
+    background-color: var(--paper);
+    background-image: var(--dots);
+    background-size: 14px 14px;
     border: 0;
     box-shadow: inset 10px 0 14px -10px rgba(0, 0, 0, 0.28);
     visibility: hidden;
@@ -403,7 +528,7 @@
   }
   .bar button:disabled { opacity: 0.35; }
   .bar .pos { font-size: 14px; color: var(--ink-soft); font-variant-numeric: tabular-nums; padding: 0 6px; white-space: nowrap; }
-  body.paged .page.end { display: flex; flex-direction: column; justify-content: center; align-items: center; }
+  body.paged section.page:not(.plain)::before { top: calc(11px + env(safe-area-inset-top)); }
 
   @media (prefers-reduced-motion: reduce) {
     body.paged .page { animation: none !important; }
@@ -571,35 +696,171 @@
       <path class="f-dark" d="M112 106V98a8 8 0 0 1 16 0v8z"/>
       <path class="k" d="M8 106h224"/>
     </symbol>
+
+    <symbol id="il-cover" viewBox="0 0 240 120">
+      <rect class="f-sky" x="0" y="0" width="240" height="110"/>
+      <circle class="f-sun" cx="204" cy="22" r="12"/>
+      <path class="k f-paper" d="M22 30a8 8 0 0 1 4-15a11 11 0 0 1 21 2a7 7 0 0 1 1 13z"/>
+      <rect class="k f-teal" x="58" y="26" width="128" height="36" rx="9"/>
+      <rect class="f-acc" x="59" y="48" width="126" height="5"/>
+      <rect class="k f-paper" x="68" y="33" width="22" height="11" rx="2"/>
+      <rect class="k f-paper" x="96" y="33" width="22" height="11" rx="2"/>
+      <rect class="k f-paper" x="124" y="33" width="22" height="11" rx="2"/>
+      <rect class="k f-paper" x="152" y="33" width="22" height="11" rx="2"/>
+      <circle class="f-sun" cx="179" cy="57" r="2.5"/>
+      <rect class="k f-gray" x="-4" y="60" width="248" height="50"/>
+      <path class="k thin" d="M0 70h240"/>
+      <path class="k f-dark" d="M20 110V96a18 18 0 0 1 36 0v14z"/>
+      <path class="k f-sun" d="M76 110V96a18 18 0 0 1 36 0v14z"/>
+      <path class="k f-dark" d="M132 110V96a18 18 0 0 1 36 0v14z"/>
+      <path class="k f-sun" d="M188 110V96a18 18 0 0 1 36 0v14z"/>
+      <circle class="f-dark" cx="94" cy="95" r="4"/>
+      <path class="f-dark" d="M88 110v-5a6 6 0 0 1 12 0v5z"/>
+      <path class="k thin" d="M206 79v7"/>
+      <circle class="k f-acc" cx="206" cy="92" r="5"/>
+      <path class="k" d="M0 110h240"/>
+    </symbol>
+
+    <symbol id="il-bag" viewBox="0 0 240 120">
+      <rect class="k f-teal" x="44" y="42" width="14" height="10" rx="2"/>
+      <rect class="k f-sea" x="40" y="52" width="22" height="54" rx="6"/>
+      <path class="k thin" d="M40 72h22"/>
+      <path class="k" d="M108 30q12-18 24 0"/>
+      <rect class="k f-acc" x="84" y="30" width="72" height="76" rx="18"/>
+      <path class="k thin" d="M84 56q36 18 72 0"/>
+      <rect class="k f-sun" x="98" y="72" width="44" height="26" rx="6"/>
+      <path class="k thin" d="M120 72v9"/>
+      <path class="k f-paper" d="M176 100V76h16l9 11q21 3 27 13z"/>
+      <path class="k thin" d="M194 81l-5 5M200 87l-5 5"/>
+      <rect class="k f-teal" x="172" y="99" width="60" height="8" rx="4"/>
+      <path class="k" d="M10 106h220"/>
+    </symbol>
+
+    <symbol id="il-clock" viewBox="0 0 240 120">
+      <path class="k" d="M100 92l-8 14M140 92l8 14"/>
+      <circle class="k f-sun" cx="94" cy="34" r="11"/>
+      <circle class="k f-sun" cx="146" cy="34" r="11"/>
+      <path class="k" d="M120 32v-10M112 22h16"/>
+      <circle class="k f-paper" cx="120" cy="66" r="32"/>
+      <path class="k thin" d="M120 38v5M120 89v5M92 66h5M143 66h5"/>
+      <path class="k" d="M120 66V47M120 66l14 9"/>
+      <circle class="f-acc" cx="120" cy="66" r="3.5"/>
+      <path class="k" d="M62 48q-8 18 0 36M178 48q8 18 0 36"/>
+      <path class="k thin" d="M48 54q-6 12 0 24M192 54q6 12 0 24"/>
+      <path class="k" d="M10 106h220"/>
+    </symbol>
   </defs>
 </svg>
 
 <div class="wrap" id="book">
 
 <div class="page cover" id="s0">
-  <header>
-    <span class="kicker">土曜ダイヤ</span>
+  <div class="cover-card">
+    <span class="kicker">旅のしおり</span>
     <h1>鶴見＆国道の昭和満喫の<br>お散歩しおり</h1>
-    <p class="date">2026年11月21日（土）　08:49 出発 → 16:30頃 大口駅</p>
-  </header>
+    <div class="pic"><svg class="illust" viewBox="0 0 240 120" role="img" aria-label="高架の上を走る電車と、高架下のアーチのイラスト"><use href="#il-cover"/></svg></div>
+    <p class="date">2026年11月21日（土）</p>
+    <p class="date-sub">08:49 出発 → 16:30頃 大口駅<span class="chip">土曜ダイヤ</span></p>
+  </div>
 
   <p class="notice">お出かけ当日は、乗換案内アプリ等で21日（土）の最新ダイヤを念のためご確認ください。</p>
 
-  <p class="route-title">今日のルート</p>
-  <nav class="route" aria-label="今日のルート">
-    <a href="#s1" data-go="1"><svg viewBox="0 0 240 120" aria-hidden="true"><use href="#il-train"/></svg><b>出発</b><span>08:49</span></a>
-    <a href="#s2" data-go="2"><svg viewBox="0 0 240 120" aria-hidden="true"><use href="#il-fish"/></svg><b>魚河岸通り</b><span>09:50</span></a>
-    <a href="#s3" data-go="3"><svg viewBox="0 0 240 120" aria-hidden="true"><use href="#il-arch"/></svg><b>国道駅</b><span>10:15</span></a>
-    <a href="#s4" data-go="4"><svg viewBox="0 0 240 120" aria-hidden="true"><use href="#il-cutlet"/></svg><b>ばーく</b><span>11:00</span></a>
-    <a href="#s5" data-go="5"><svg viewBox="0 0 240 120" aria-hidden="true"><use href="#il-sea"/></svg><b>海芝浦</b><span>12:21</span></a>
-    <a href="#s6" data-go="6"><svg viewBox="0 0 240 120" aria-hidden="true"><use href="#il-beer"/></svg><b>キリン工場</b><span>13:20</span></a>
-    <a href="#s7" data-go="7"><svg viewBox="0 0 240 120" aria-hidden="true"><use href="#il-harbor"/></svg><b>子安浜</b><span>14:31</span></a>
-    <a href="#s8" data-go="8"><svg viewBox="0 0 240 120" aria-hidden="true"><use href="#il-coffee"/></svg><b>喫茶ミネ</b><span>15:00</span></a>
-    <a href="#s9" data-go="9"><svg viewBox="0 0 240 120" aria-hidden="true"><use href="#il-arcade"/></svg><b>大口通商店街</b><span>15:40</span></a>
-  </nav>
-
   <button class="modebtn js-mode" type="button">📖 ページ式で見る</button>
 </div>
+
+<section class="page plain" id="toc">
+  <div class="sec-head"><span class="num">もくじ</span><h2>今日のルート</h2></div>
+  <svg class="map" viewBox="0 0 320 210" role="img" aria-label="今日のルートの略図。生麦駅から魚河岸通り、国道駅、ばーく、海芝浦、キリン工場、子安浜、喫茶ミネ、大口通商店街を回って大口駅まで。">
+    <path class="f-sea" d="M0 172Q80 162 160 170T320 166V210H0Z"/>
+    <path class="k thin s-foam" d="M20 190q8-6 16 0t16 0M118 198q8-6 16 0t16 0M196 192q8-6 16 0t16 0"/>
+    <path class="rail" d="M12 96H308"/>
+    <path class="rail" d="M270 96L262 130Q268 156 288 174"/>
+    <path class="rail" d="M10 41L48 28"/>
+    <path class="path-walk" d="M170 96Q176 128 200 131L262 130"/>
+    <path class="path-walk" d="M262 130Q246 100 250 56"/>
+    <path class="path-walk" d="M250 56L270 96"/>
+    <path class="path-walk" d="M170 96L140 134"/>
+    <path class="path-walk" d="M56 96L46 146"/>
+    <path class="path-walk" d="M56 96L76 66L64 40L30 34"/>
+    <circle class="st" cx="56" cy="96" r="5"/>
+    <circle class="st" cx="270" cy="96" r="5"/>
+    <circle class="st" cx="30" cy="34" r="5"/>
+    <circle class="mk" cx="170" cy="96" r="9"/>
+    <circle class="mk" cx="210" cy="131" r="9"/>
+    <circle class="mk" cx="262" cy="130" r="9"/>
+    <circle class="mk" cx="250" cy="56" r="9"/>
+    <circle class="mk" cx="288" cy="174" r="9"/>
+    <circle class="mk" cx="140" cy="134" r="9"/>
+    <circle class="mk" cx="46" cy="146" r="9"/>
+    <circle class="mk" cx="76" cy="66" r="9"/>
+    <circle class="mk" cx="64" cy="40" r="9"/>
+    <text class="mk-t" x="170" y="100" text-anchor="middle">1</text>
+    <text class="mk-t" x="210" y="135" text-anchor="middle">2</text>
+    <text class="mk-t" x="262" y="134" text-anchor="middle">3</text>
+    <text class="mk-t" x="250" y="60" text-anchor="middle">4</text>
+    <text class="mk-t" x="288" y="178" text-anchor="middle">5</text>
+    <text class="mk-t" x="140" y="138" text-anchor="middle">6</text>
+    <text class="mk-t" x="46" y="150" text-anchor="middle">7</text>
+    <text class="mk-t" x="76" y="70" text-anchor="middle">8</text>
+    <text class="mk-t" x="64" y="44" text-anchor="middle">9</text>
+    <text class="map-s" x="14" y="113">←横浜</text>
+    <text class="map-s" x="96" y="109">京急線</text>
+    <text class="map-s" x="278" y="148">鶴見線</text>
+    <text class="map-t" x="170" y="80" text-anchor="middle">生麦駅</text>
+    <text class="map-t" x="216" y="118" text-anchor="middle">魚河岸通り</text>
+    <text class="map-t" x="254" y="151" text-anchor="end">国道駅</text>
+    <text class="map-t" x="263" y="60">ばーく</text>
+    <text class="map-t" x="280" y="88">鶴見駅</text>
+    <text class="map-t" x="275" y="178" text-anchor="end">海芝浦</text>
+    <text class="map-t" x="140" y="157" text-anchor="middle">キリン工場</text>
+    <text class="map-t" x="59" y="150">子安浜</text>
+    <text class="map-t" x="44" y="88" text-anchor="end">子安駅</text>
+    <text class="map-t" x="89" y="70">喫茶ミネ</text>
+    <text class="map-t" x="77" y="44">大口通商店街</text>
+    <text class="map-t" x="10" y="20">ゴール 大口駅</text>
+  </svg>
+  <p class="legend"><span><i class="lg lg-rail"></i>電車</span><span><i class="lg lg-walk"></i>徒歩</span><span><i class="lg-num">1</i>しおりの番号</span></p>
+  <p class="map-note">※ 位置関係をつかむための略図です（縮尺と方角は正確ではありません）。スタートは日吉本町駅。横浜で京急に乗りかえて、1 の生麦駅へ向かいます。</p>
+
+  <nav class="route" aria-label="もくじ">
+    <a href="#s1" data-go><svg viewBox="0 0 240 120" aria-hidden="true"><use href="#il-train"/></svg><b>01 出発</b><span>08:49</span></a>
+    <a href="#s2" data-go><svg viewBox="0 0 240 120" aria-hidden="true"><use href="#il-fish"/></svg><b>02 魚河岸通り</b><span>09:50</span></a>
+    <a href="#s3" data-go><svg viewBox="0 0 240 120" aria-hidden="true"><use href="#il-arch"/></svg><b>03 国道駅</b><span>10:15</span></a>
+    <a href="#s4" data-go><svg viewBox="0 0 240 120" aria-hidden="true"><use href="#il-cutlet"/></svg><b>04 ばーく</b><span>11:00</span></a>
+    <a href="#s5" data-go><svg viewBox="0 0 240 120" aria-hidden="true"><use href="#il-sea"/></svg><b>05 海芝浦</b><span>12:21</span></a>
+    <a href="#s6" data-go><svg viewBox="0 0 240 120" aria-hidden="true"><use href="#il-beer"/></svg><b>06 キリン工場</b><span>13:20</span></a>
+    <a href="#s7" data-go><svg viewBox="0 0 240 120" aria-hidden="true"><use href="#il-harbor"/></svg><b>07 子安浜</b><span>14:31</span></a>
+    <a href="#s8" data-go><svg viewBox="0 0 240 120" aria-hidden="true"><use href="#il-coffee"/></svg><b>08 喫茶ミネ</b><span>15:00</span></a>
+    <a href="#s9" data-go><svg viewBox="0 0 240 120" aria-hidden="true"><use href="#il-arcade"/></svg><b>09 大口通</b><span>15:40</span></a>
+  </nav>
+</section>
+
+<section class="page" id="items">
+  <svg class="illust" viewBox="0 0 240 120" role="img" aria-label="リュックと水筒とスニーカーのイラスト"><use href="#il-bag"/></svg>
+  <div class="sec-head"><span class="num">じゅんび</span><h2>もちもの</h2></div>
+  <ul class="memo">
+    <li><span class="em" aria-hidden="true">👟</span><span><b>歩きやすい靴</b><small>一日じゅう歩きます。</small></span></li>
+    <li><span class="em" aria-hidden="true">📱</span><span><b>スマホ</b><small>このしおりと、乗換案内アプリを見ます。</small></span></li>
+    <li><span class="em" aria-hidden="true">🔋</span><span><b>モバイルバッテリー</b><small>地図と動画で電池が減ります。</small></span></li>
+    <li><span class="em" aria-hidden="true">💳</span><span><b>交通系ICカード</b><small>電車に何度も乗るので、残高を確認しておきます。</small></span></li>
+    <li><span class="em" aria-hidden="true">💴</span><span><b>現金（小銭も）</b><small>駄菓子屋や個人のお店用に、念のため。</small></span></li>
+    <li><span class="em" aria-hidden="true">🧥</span><span><b>上着</b><small>11月下旬の海辺は風が冷たいので、海芝浦と子安浜で羽織れるものを。</small></span></li>
+    <li><span class="em" aria-hidden="true">☂️</span><span><b>折りたたみ傘</b><small>天気しだいで。</small></span></li>
+    <li><span class="em" aria-hidden="true">🧻</span><span><b>ハンカチ・ティッシュ</b></span></li>
+  </ul>
+</section>
+
+<section class="page" id="rules">
+  <svg class="illust" viewBox="0 0 240 120" role="img" aria-label="目覚まし時計のイラスト"><use href="#il-clock"/></svg>
+  <div class="sec-head"><span class="num">だいじ</span><h2>おやくそく</h2></div>
+  <ul class="memo rules">
+    <li><span class="sono">その1</span><span><b>10:35に国道駅を出発する</b><small>ばーくの開店（11:00）の少し前に着くためです。</small></span></li>
+    <li><span class="sono">その2</span><span><b>11:55にはばーくを出る</b><small>鶴見 12:10発の海芝浦行に乗ります。乗り遅れると、次は13:30発です。</small></span></li>
+    <li><span class="sono">その3</span><span><b>海芝浦では同じ電車で折り返す</b><small>一般客は改札を出られません。12:36発で鶴見へ戻ります。</small></span></li>
+    <li><span class="sono">その4</span><span><b>子安浜は静かに見て回る</b><small>暮らしの場です。</small></span></li>
+    <li><span class="sono">その5</span><span><b>当日は最新のダイヤを確認する</b><small>乗換案内アプリで、21日（土）の時刻を念のため見ておきます。</small></span></li>
+  </ul>
+</section>
 
 <section class="page" id="s1">
   <svg class="illust" viewBox="0 0 240 120" role="img" aria-label="電車のイラスト"><use href="#il-train"/></svg>
@@ -839,7 +1100,11 @@
 
 <div class="page end" id="s10">
   <svg class="illust" viewBox="0 0 240 120" role="img" aria-label="電車のイラスト"><use href="#il-train"/></svg>
-  <p>お疲れ様でした！</p>
+  <p class="end-ttl">お疲れ様でした！</p>
+  <p class="end-sub">家に着くまでが遠足です。</p>
+  <label class="memo-label" for="memo">きょうの思い出メモ</label>
+  <textarea id="memo" rows="6" placeholder="いちばん楽しかったこと、おいしかったもの…"></textarea>
+  <p class="memo-note" id="memo-note">書いた内容は、この端末のこのブラウザの中だけに保存されます。</p>
 </div>
 
 </div>
@@ -962,12 +1227,18 @@
   slice.call(document.querySelectorAll("[data-go]")).forEach(function (a) {
     a.addEventListener("click", function (e) {
       if (!paged) return;
+      var target = document.getElementById((a.getAttribute("href") || "").slice(1));
+      var n = pages.indexOf(target);
+      if (n < 0) return;
       e.preventDefault();
-      go(Number(a.getAttribute("data-go")));
+      go(n);
     });
   });
+  function isTyping(e) {
+    return !!(e.target && e.target.tagName === "TEXTAREA");
+  }
   document.addEventListener("keydown", function (e) {
-    if (!paged) return;
+    if (!paged || isTyping(e)) return;
     if (e.key === "ArrowRight" || e.key === "PageDown") { go(idx + 1); }
     if (e.key === "ArrowLeft" || e.key === "PageUp") { go(idx - 1); }
   });
@@ -977,7 +1248,7 @@
   var sy = 0;
   var tracking = false;
   book.addEventListener("touchstart", function (e) {
-    if (!paged || e.touches.length !== 1) { tracking = false; return; }
+    if (!paged || e.touches.length !== 1 || isTyping(e)) { tracking = false; return; }
     tracking = true;
     sx = e.touches[0].clientX;
     sy = e.touches[0].clientY;
@@ -990,6 +1261,25 @@
     var dy = t.clientY - sy;
     if (Math.abs(dx) > 56 && Math.abs(dx) > Math.abs(dy) * 1.5) { go(idx + (dx < 0 ? 1 : -1)); }
   }, { passive: true });
+
+  /* 思い出メモ。この端末のブラウザにだけ保存する */
+  var MEMO_KEY = "shiori-memo";
+  var memo = document.getElementById("memo");
+  var memoNote = document.getElementById("memo-note");
+  if (memo && memoNote) {
+    try {
+      memo.value = localStorage.getItem(MEMO_KEY) || "";
+    } catch (e) {
+      memoNote.textContent = "このブラウザでは保存できません。ページを閉じるとメモは消えます。";
+    }
+    memo.addEventListener("input", function () {
+      try {
+        localStorage.setItem(MEMO_KEY, memo.value);
+      } catch (e) {
+        memoNote.textContent = "保存できませんでした。ページを閉じるとメモは消えます。";
+      }
+    });
+  }
 
   /* 前回の表示方法を復元。当日は「いまここ」のページから開く */
   var savedMode = "scroll";
